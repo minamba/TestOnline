@@ -1,0 +1,9 @@
+C:\Users\daryu\source\repos\TestOnline\Business\obj\Debug\netstandard2.0\Business.csproj.CoreCompileInputs.cache
+C:\Users\daryu\source\repos\TestOnline\Business\obj\Debug\netstandard2.0\Business.AssemblyInfoInputs.cache
+C:\Users\daryu\source\repos\TestOnline\Business\obj\Debug\netstandard2.0\Business.AssemblyInfo.cs
+C:\Users\daryu\source\repos\TestOnline\Business\bin\Debug\netstandard2.0\Business.deps.json
+C:\Users\daryu\source\repos\TestOnline\Business\bin\Debug\netstandard2.0\Business.dll
+C:\Users\daryu\source\repos\TestOnline\Business\bin\Debug\netstandard2.0\Business.pdb
+C:\Users\daryu\source\repos\TestOnline\Business\obj\Debug\netstandard2.0\Business.csprojResolveAssemblyReference.cache
+C:\Users\daryu\source\repos\TestOnline\Business\obj\Debug\netstandard2.0\Business.dll
+C:\Users\daryu\source\repos\TestOnline\Business\obj\Debug\netstandard2.0\Business.pdb

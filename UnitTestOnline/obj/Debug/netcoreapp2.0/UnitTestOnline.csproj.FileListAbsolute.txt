@@ -1,0 +1,14 @@
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\UnitTestOnline.deps.json
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\UnitTestOnline.runtimeconfig.json
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\UnitTestOnline.runtimeconfig.dev.json
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\UnitTestOnline.dll
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\obj\Debug\netcoreapp2.0\UnitTestOnline.csprojResolveAssemblyReference.cache
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\obj\Debug\netcoreapp2.0\UnitTestOnline.csproj.CoreCompileInputs.cache
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\obj\Debug\netcoreapp2.0\UnitTestOnline.AssemblyInfoInputs.cache
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\obj\Debug\netcoreapp2.0\UnitTestOnline.AssemblyInfo.cs
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\UnitTestOnline.pdb
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\obj\Debug\netcoreapp2.0\UnitTestOnline.dll
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\obj\Debug\netcoreapp2.0\UnitTestOnline.pdb
