@@ -1,4 +1,5 @@
 ﻿using Business.Repositories;
+using Business.Services;
 using coreEntityFramework;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,14 +11,20 @@ namespace TestOnline.Controllers
 {
     public class CandidatesController : Controller
     {
-        private List<Candidate> _lstcandidate;
+        private ICandidatesService _service;
 
-        [HttpGet]
-        public List<Candidate> GetCandidates()
+        public CandidatesController(ICandidatesService service)
         {
-            var lcandidate = new CandidatesService();
-            _lstcandidate = lcandidate.GetCandidates();
-            return (_lstcandidate);
+            _service = service;
         }
+
+
+        public JsonResult GetCandidates()
+        {
+            List<Candidate> lstCandidate = _service.GetCandidates();
+            return Json(lstCandidate);
+        }
+
+
     }
 }
