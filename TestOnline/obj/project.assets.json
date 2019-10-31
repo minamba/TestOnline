@@ -93,15 +93,6 @@
           "lib/netstandard1.6/Microsoft.AI.DependencyCollector.dll": {}
         }
       },
-      "Microsoft.AspNet.Razor/2.0.30506": {
-        "type": "package",
-        "compile": {
-          "lib/net40/System.Web.Razor.dll": {}
-        },
-        "runtime": {
-          "lib/net40/System.Web.Razor.dll": {}
-        }
-      },
       "Microsoft.AspNetCore/2.0.0": {
         "type": "package",
         "dependencies": {
@@ -5171,18 +5162,6 @@
         "lib/netstandard1.6/Microsoft.AI.DependencyCollector.xml",
         "microsoft.applicationinsights.dependencycollector.2.4.1.nupkg.sha512",
         "microsoft.applicationinsights.dependencycollector.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.Razor/2.0.30506": {
-      "sha512": "OKx1x7TkgJLV1y+QkQiYnD1XBEjSA2Bybeu+RhuM2VVkOPcqDwa4l8Bst0SyZAe5O+x60TmttOp/O87z0I5SdQ==",
-      "type": "package",
-      "path": "microsoft.aspnet.razor/2.0.30506",
-      "files": [
-        ".signature.p7s",
-        "lib/net40/System.Web.Razor.dll",
-        "lib/net40/System.Web.Razor.xml",
-        "microsoft.aspnet.razor.2.0.30506.nupkg.sha512",
-        "microsoft.aspnet.razor.nuspec"
       ]
     },
     "Microsoft.AspNetCore/2.0.0": {
@@ -13324,7 +13303,6 @@
     ".NETCoreApp,Version=v2.0": [
       "Business >= 1.0.0",
       "Dal >= 1.0.0",
-      "Microsoft.AspNet.Razor >= 2.0.30506",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.EntityFrameworkCore >= 2.2.1",
       "Microsoft.EntityFrameworkCore.Design >= 2.2.1",
@@ -13418,10 +13396,6 @@
           "Microsoft.AspNetCore.All": {
             "target": "Package",
             "version": "2.0.0"
-          },
-          "Microsoft.AspNet.Razor": {
-            "target": "Package",
-            "version": "2.0.30506"
           }
         },
         "imports": [
@@ -13431,17 +13405,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Le package 'Microsoft.AspNet.Razor 2.0.30506' a été restauré en utilisant '.NETFramework,Version=v4.6.1' au lieu du framework cible du projet '.NETCoreApp,Version=v2.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
-      "libraryId": "Microsoft.AspNet.Razor",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    }
-  ]
+  }
 }

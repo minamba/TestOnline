@@ -10,7 +10,7 @@ namespace Business.Repositories
     {
         public List<Candidate> GetCandidates()
         {
-            throw new NotImplementedException();
+                throw new NotImplementedException();
         }
     }
 }

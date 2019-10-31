@@ -10,12 +10,14 @@ namespace TestOnline.Controllers
 {
     public class CandidatesController : Controller
     {
+        private List<Candidate> _lstcandidate;
+
         [HttpGet]
         public List<Candidate> GetCandidates()
         {
             var lcandidate = new CandidatesService();
-
-            return lcandidate.GetCandidates();
+            _lstcandidate = lcandidate.GetCandidates();
+            return (_lstcandidate);
         }
     }
 }
