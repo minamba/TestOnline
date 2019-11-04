@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Business.Repositories;
 using Business.Services;
+using Dal;
 
 namespace TestOnline
 {
@@ -26,7 +27,7 @@ namespace TestOnline
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddTransient<ICandidatesService, CandidatesService>();
+            services.AddTransient<ICandidatesRepository,CandidateRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

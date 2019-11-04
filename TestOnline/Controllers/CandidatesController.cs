@@ -2,6 +2,7 @@
 using Business.Repositories;
 using Business.Services;
 using coreEntityFramework;
+using Dal;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,18 @@ namespace TestOnline.Controllers
     {
         private ICandidatesService _service;
 
-        public CandidatesController(ICandidatesService service)
-        {
-            _service = service;
-        }
+        //public CandidatesController(ICandidatesService service)
+        //{
+        //    _service = service;
+        //}
 
         [HttpGet]
         public async Task<ActionResult> GetCandidatesAsync()
         {
-            List<CandidateModel> lstCandidate = await _service.GetCandidatesAsync();
+            CandidateRepository cr = new CandidateRepository();
+
+            List<CandidateModel> lstCandidate = await cr.GetCandidatesAsync();
+        
             return Ok(lstCandidate);
         }
 
