@@ -3,14 +3,17 @@ using coreEntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Business.Repositories
 {
     public class CandidatesService : ICandidatesService
     {
-        public List<Candidate> GetCandidates()
+        private ICandidatesRepository _repository;
+
+        public Task<List<Candidate>> GetCandidates()
         {
-                throw new NotImplementedException();
+            return _repository.GetCandidates();
         }
     }
 }

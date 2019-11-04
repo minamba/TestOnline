@@ -18,10 +18,9 @@ namespace TestOnline.Controllers
             _service = service;
         }
 
-
         public JsonResult GetCandidates()
         {
-            List<Candidate> lstCandidate = _service.GetCandidates();
+            Task<List<Candidate>> lstCandidate = _service.GetCandidates();
             return Json(lstCandidate);
         }
 
