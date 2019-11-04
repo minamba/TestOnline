@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace TestOnline.Controllers
 {
+    [Route("api/[controller]")]
     public class CandidatesController : Controller
     {
         private ICandidatesService _service;
@@ -20,7 +21,7 @@ namespace TestOnline.Controllers
         }
 
         [HttpGet]
-        public async Task<ObjectResult> GetCandidatesAsync()
+        public async Task<ActionResult> GetCandidatesAsync()
         {
             List<CandidateModel> lstCandidate = await _service.GetCandidatesAsync();
             return Ok(lstCandidate);
