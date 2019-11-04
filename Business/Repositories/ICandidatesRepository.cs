@@ -1,4 +1,4 @@
-﻿using coreEntityFramework;
+﻿using Business.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +8,6 @@ namespace Business.Repositories
 {
     public interface ICandidatesRepository
     {
-        Task<List<Candidate>> GetCandidates();
+        Task<List<CandidateModel>> GetCandidatesAsync();
     }
 }

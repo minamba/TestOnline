@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "365a9e4e785bc2d37d2c3643ca02b728466c02f6"
+    "signature": "89cf96022a0ff13603ae4c6a46063a9817ac915f"
   },
   "compilationOptions": {
     "defines": [
@@ -26,7 +26,6 @@
         "dependencies": {
           "Business": "1.0.0",
           "Dal": "1.0.0",
-          "Microsoft.AspNet.Razor": "2.0.30506",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.EntityFrameworkCore": "2.2.1",
           "Microsoft.EntityFrameworkCore.Design": "2.2.1",
@@ -145,17 +144,6 @@
         },
         "compile": {
           "lib/netstandard1.6/Microsoft.AI.DependencyCollector.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Razor/2.0.30506": {
-        "runtime": {
-          "lib/net40/System.Web.Razor.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.20715.0"
-          }
-        },
-        "compile": {
-          "lib/net40/System.Web.Razor.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.0.0": {
@@ -5005,13 +4993,6 @@
       "sha512": "sha512-cmNBSZuXAN3Fcjqo6cORASHzsCDojwVkCiSbcg6lMPL8yzUHk9VX042oDfUwKNq4yk+80wgUmYKdSUgyuXaHKw==",
       "path": "microsoft.applicationinsights.dependencycollector/2.4.1",
       "hashPath": "microsoft.applicationinsights.dependencycollector.2.4.1.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Razor/2.0.30506": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-OKx1x7TkgJLV1y+QkQiYnD1XBEjSA2Bybeu+RhuM2VVkOPcqDwa4l8Bst0SyZAe5O+x60TmttOp/O87z0I5SdQ==",
-      "path": "microsoft.aspnet.razor/2.0.30506",
-      "hashPath": "microsoft.aspnet.razor.2.0.30506.nupkg.sha512"
     },
     "Microsoft.AspNetCore/2.0.0": {
       "type": "package",

@@ -1,4 +1,5 @@
-﻿using Business.Repositories;
+﻿using Business.Models;
+using Business.Repositories;
 using Business.Services;
 using coreEntityFramework;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +19,11 @@ namespace TestOnline.Controllers
             _service = service;
         }
 
-        public JsonResult GetCandidates()
+        [HttpGet]
+        public async Task<ObjectResult> GetCandidatesAsync()
         {
-            Task<List<Candidate>> lstCandidate = _service.GetCandidates();
-            return Json(lstCandidate);
+            List<CandidateModel> lstCandidate = await _service.GetCandidatesAsync();
+            return Ok(lstCandidate);
         }
 
 

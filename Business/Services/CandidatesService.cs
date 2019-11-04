@@ -1,5 +1,5 @@
-﻿using Business.Services;
-using coreEntityFramework;
+﻿using Business.Models;
+using Business.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,9 +11,9 @@ namespace Business.Repositories
     {
         private ICandidatesRepository _repository;
 
-        public Task<List<Candidate>> GetCandidates()
+        public async Task<List<CandidateModel>> GetCandidatesAsync()
         {
-            return _repository.GetCandidates();
+            return await _repository.GetCandidatesAsync();
         }
     }
 }
