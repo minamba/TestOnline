@@ -16,17 +16,17 @@ namespace TestOnline.Controllers
     {
         private ICandidatesService _service;
 
-        //public CandidatesController(ICandidatesService service)
-        //{
-        //    _service = service;
-        //}
+        public CandidatesController(ICandidatesService service)
+        {
+            _service = service;
+        }
 
         [HttpGet]
         public async Task<ActionResult> GetCandidatesAsync()
         {
-            CandidateRepository cr = new CandidateRepository();
+            //CandidateRepository cr = new CandidateRepository();
 
-            List<CandidateModel> lstCandidate = await cr.GetCandidatesAsync();
+            List<CandidateModel> lstCandidate = await _service.GetCandidatesAsync();
         
             return Ok(lstCandidate);
         }

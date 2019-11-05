@@ -28,6 +28,7 @@ namespace TestOnline
         {
             services.AddMvc();
             services.AddTransient<ICandidatesRepository,CandidateRepository>();
+            services.AddTransient<ICandidatesService, CandidatesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

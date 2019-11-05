@@ -11,6 +11,12 @@ namespace Business.Repositories
     {
         private ICandidatesRepository _repository;
 
+
+        public CandidatesService(ICandidatesRepository repository)
+        {
+            _repository = repository;
+        }
+
         public async Task<List<CandidateModel>> GetCandidatesAsync()
         {
             return await _repository.GetCandidatesAsync();
