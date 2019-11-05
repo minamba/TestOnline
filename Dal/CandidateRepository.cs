@@ -12,15 +12,20 @@ namespace Dal
 {
     public class CandidateRepository : ICandidatesRepository
     {
+
+        public MyFirstFullStackApp_DevContext _MyContext { get; set; }
+
+        public CandidateRepository(MyFirstFullStackApp_DevContext dbcontext)
+        {
+            _MyContext = dbcontext;
+        }
+
+
          public async Task<List<CandidateModel>> GetCandidatesAsync()
         {
-            using (var dbcontext = new MyFirstFullStackApp_DevContext()) {
-
-                var candidateEntity = await dbcontext.Candidate.ToListAsync();
-                var CandidateModel = candidateEntity.Select(c => new CandidateModel(c.FirstName,c.LastName,(int)c.TestId));
-
-                return CandidateModel.ToList();
-            }
+              var candidateEntity = await _MyContext.Candidate.ToListAsync();
+              var CandidateModel = candidateEntity.Select(c => new CandidateModel(c.FirstName,c.LastName,(int)c.TestId));
+              return CandidateModel.ToList();
         }
     }
 }
