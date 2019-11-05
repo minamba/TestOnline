@@ -11,6 +11,8 @@ using Microsoft.Extensions.Options;
 using Business.Repositories;
 using Business.Services;
 using Dal;
+using Microsoft.EntityFrameworkCore;
+using coreEntityFramework;
 
 namespace TestOnline
 {
@@ -29,6 +31,7 @@ namespace TestOnline
             services.AddMvc();
             services.AddTransient<ICandidatesRepository,CandidateRepository>();
             services.AddTransient<ICandidatesService, CandidatesService>();
+            services.AddDbContext<MyFirstFullStackApp_DevContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
