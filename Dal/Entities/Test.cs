@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace coreEntityFramework
+namespace Dal.Entities
 {
-    public partial class Question
+    public partial class Test
     {
-        public Question()
+        public Test()
         {
-            Answer = new HashSet<Answer>();
+            Candidate = new HashSet<Candidate>();
             TestQuestion = new HashSet<TestQuestion>();
         }
 
         public int Id { get; set; }
-        public string Statement { get; set; }
+        public string Title { get; set; }
 
-        public virtual ICollection<Answer> Answer { get; set; }
+        public virtual ICollection<Candidate> Candidate { get; set; }
         public virtual ICollection<TestQuestion> TestQuestion { get; set; }
     }
 }

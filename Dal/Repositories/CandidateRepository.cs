@@ -7,8 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Models;
 using Business.Repositories;
+using Dal.Entities;
 
-namespace Dal
+namespace Dal.Repositories
 {
     public class CandidateRepository : ICandidatesRepository
     {
@@ -21,11 +22,11 @@ namespace Dal
         }
 
 
-         public async Task<List<CandidateModel>> GetCandidatesAsync()
+        public async Task<List<CandidateModel>> GetCandidatesAsync()
         {
-              var candidateEntity = await _MyContext.Candidate.ToListAsync();
-              var CandidateModel = candidateEntity.Select(c => new CandidateModel(c.FirstName,c.LastName,(int)c.TestId));
-              return CandidateModel.ToList();
+            var candidateEntity = await _MyContext.Candidate.ToListAsync();
+            var CandidateModel = candidateEntity.Select(c => new CandidateModel(c.FirstName, c.LastName, (int)c.TestId));
+            return CandidateModel.ToList();
         }
     }
 }

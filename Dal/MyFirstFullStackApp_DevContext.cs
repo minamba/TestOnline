@@ -1,4 +1,5 @@
 ﻿using System;
+using Dal.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 

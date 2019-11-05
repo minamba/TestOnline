@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace coreEntityFramework
+namespace Dal.Entities
 {
     public partial class Result
     {
