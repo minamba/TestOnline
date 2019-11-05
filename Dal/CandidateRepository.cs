@@ -17,7 +17,6 @@ namespace Dal
 
         public CandidateRepository(MyFirstFullStackApp_DevContext dbcontext)
         {
-            dbcontext = new MyFirstFullStackApp_DevContext();
             _MyContext = dbcontext;
         }
 
