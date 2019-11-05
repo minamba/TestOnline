@@ -12,3 +12,9 @@ C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\obj\Debug\netcoreapp2.0\Un
 C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\UnitTestOnline.pdb
 C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\obj\Debug\netcoreapp2.0\UnitTestOnline.dll
 C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\obj\Debug\netcoreapp2.0\UnitTestOnline.pdb
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\Business.dll
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\Dal.dll
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\TestOnline.dll
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\TestOnline.pdb
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\Business.pdb
+C:\Users\daryu\source\repos\TestOnline\UnitTestOnline\bin\Debug\netcoreapp2.0\Dal.pdb

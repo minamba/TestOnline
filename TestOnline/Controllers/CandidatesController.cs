@@ -22,7 +22,7 @@ namespace TestOnline.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetCandidatesAsync()
+        public async Task<OkObjectResult> GetCandidatesAsync()
         {
             //CandidateRepository cr = new CandidateRepository();
 
