@@ -17,5 +17,14 @@ namespace Dal.Entities
 
         public virtual Test Test { get; set; }
         public virtual ICollection<Result> Result { get; set; }
+
+
+        public Candidate(string firstName , string lastName, int testId)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            TestId = testId;
+                
+        }
     }
 }

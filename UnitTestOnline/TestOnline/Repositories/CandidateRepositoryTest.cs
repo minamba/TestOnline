@@ -4,6 +4,7 @@ using Business.Repositories;
 using Business.Services;
 using coreEntityFramework;
 using Dal.Entities;
+using Dal.Profile;
 using Dal.Repositories;
 using Dal.Utilities;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,11 @@ namespace UnitTestOnline.TestOnline.Repositories
 
             using (var context = new MyFirstFullStackApp_DevContext(options))
             {
-                var candidateRepository = new CandidateRepository(context, AutomapperSingleton.Mapper);
+                context.Candidate.Add(new Candidate("camara", "minamba", 1));
+                context.Candidate.Add(new Candidate("uzumaki", "naruto", 2));
+                context.Candidate.Add(new Candidate("uchiha", "sasuke", 3));
+
+                var candidateRepository = new CandidateRepository(context,AutomapperSingleton.Mapper);
                 List<Candidate> expectedList;
 
                 expectedList = context.Candidate.ToList();
