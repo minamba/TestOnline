@@ -22,6 +22,18 @@ namespace UnitTestOnline.TestOnline.Repositories
     [TestClass]
     public class CandidateRepositoryTest
     {
+        private static IMapper _mapper;
+
+        public CandidateRepositoryTest()
+        {
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new CandidateToCandidateModel());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            _mapper = mapper;
+        }
+
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateRepository()
         {
@@ -35,7 +47,7 @@ namespace UnitTestOnline.TestOnline.Repositories
                 context.Candidate.Add(new Candidate("uzumaki", "naruto", 2));
                 context.Candidate.Add(new Candidate("uchiha", "sasuke", 3));
 
-                var candidateRepository = new CandidateRepository(context,AutomapperSingleton.Mapper);
+                var candidateRepository = new CandidateRepository(context, _mapper);
                 List<Candidate> expectedList;
 
                 expectedList = context.Candidate.ToList();

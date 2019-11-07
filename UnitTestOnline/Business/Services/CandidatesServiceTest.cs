@@ -17,7 +17,10 @@ namespace UnitTestOnline.Business.Services
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateService()
         {
-            var candidateService = Substitute.For<ICandidatesRepository>();
+            var mockRepository = Substitute.For<ICandidatesRepository>();
+            var candidateService= new CandidatesService(mockRepository);
+
+
             var lst = new List<CandidateModel> {
               new CandidateModel ("camara","minamba",1),
               new CandidateModel ("uzumaki","naruto",2),
@@ -27,7 +30,7 @@ namespace UnitTestOnline.Business.Services
             var mock = candidateService.GetCandidatesAsync().Returns(lst);
             var result = await candidateService.GetCandidatesAsync();
 
-            CollectionAssert.AreEqual(lst, result);
+            Assert.AreEqual(lst, result);
         }
     }
 }
