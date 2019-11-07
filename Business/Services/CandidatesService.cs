@@ -1,4 +1,5 @@
-﻿using Business.Models;
+﻿using AutoMapper;
+using Business.Models;
 using Business.Services;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,6 @@ namespace Business.Repositories
     {
         private ICandidatesRepository _repository;
 
-
         public CandidatesService(ICandidatesRepository repository)
         {
             _repository = repository;
@@ -19,7 +19,9 @@ namespace Business.Repositories
 
         public async Task<List<CandidateModel>> GetCandidatesAsync()
         {
-            return await _repository.GetCandidatesAsync();
+            var listCandidate = await _repository.GetCandidatesAsync();
+
+            return listCandidate;
         }
     }
 }

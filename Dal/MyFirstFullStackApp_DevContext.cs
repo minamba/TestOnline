@@ -8,13 +8,13 @@ namespace coreEntityFramework
     public partial class MyFirstFullStackApp_DevContext : DbContext
     {
         public MyFirstFullStackApp_DevContext()
-        {
-        }
+        {}
 
         public MyFirstFullStackApp_DevContext(DbContextOptions<MyFirstFullStackApp_DevContext> options)
-            : base(options)
-        {
-        }
+             : base(options)
+        {}
+
+ 
 
         public virtual DbSet<Answer> Answer { get; set; }
         public virtual DbSet<Candidate> Candidate { get; set; }

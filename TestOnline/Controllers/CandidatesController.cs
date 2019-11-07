@@ -1,8 +1,10 @@
-﻿using Business.Models;
+﻿using AutoMapper;
+using Business.Models;
 using Business.Repositories;
 using Business.Services;
 using coreEntityFramework;
 using Dal;
+using Dal.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,11 +25,9 @@ namespace TestOnline.Controllers
 
         [HttpGet]
         public async Task<OkObjectResult> GetCandidatesAsync()
-        {
-            //CandidateRepository cr = new CandidateRepository();
+        {      
+            var lstCandidate = await _service.GetCandidatesAsync();
 
-            List<CandidateModel> lstCandidate = await _service.GetCandidatesAsync();
-        
             return Ok(lstCandidate);
         }
 

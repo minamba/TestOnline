@@ -14,6 +14,8 @@ using Dal;
 using Microsoft.EntityFrameworkCore;
 using coreEntityFramework;
 using Dal.Repositories;
+using AutoMapper;
+using Dal.Profile;
 
 namespace TestOnline
 {
@@ -33,6 +35,7 @@ namespace TestOnline
             services.AddTransient<ICandidatesRepository,CandidateRepository>();
             services.AddTransient<ICandidatesService, CandidatesService>();
             services.AddDbContext<MyFirstFullStackApp_DevContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
