@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Models;
 using Business.Repositories;
 using Business.Services;
@@ -16,38 +16,11 @@ using System.Net;
 using System.Threading.Tasks;
 using TestOnline.Controllers;
 
-namespace UnitTestOnline
+namespace UnitTestOnline.TestOnline.Repositories
 {
     [TestClass]
-    public class UnitTest1
+    public class CandidateRepositoryTest
     {
-        [TestMethod]
-        public async Task Shoud_Get_Candidates_In_Controller()
-        {
-            var candidateService = Substitute.For<ICandidatesService>();
-            var CandidateController = new CandidatesController(candidateService);
-
-            var result = await CandidateController.GetCandidatesAsync();
-            var okResult = result as OkObjectResult;
-
-            Assert.AreEqual(200, okResult.StatusCode);
-        }
-
-
-
-        //[TestMethod]
-        //public async Task Shoud_Get_Candidates_In_CandidateService()
-        //{
-        //    var iCandidateRepository = Substitute.For<ICandidatesRepository>();
-        //    var CandidateService = new CandidatesService(iCandidateRepository);
-     
-        //    var result = await CandidateService.GetCandidatesAsync();
-
-        //    CollectionAssert.AreEqual("", result);          
-        //}
-
-
-
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateRepository()
         {
@@ -62,10 +35,9 @@ namespace UnitTestOnline
 
                 expectedList = context.Candidate.ToList();
                 var result = await candidateRepository.GetCandidatesAsync();
-               
+
                 CollectionAssert.AreEqual(expectedList, result);
             }
         }
-
     }
 }
