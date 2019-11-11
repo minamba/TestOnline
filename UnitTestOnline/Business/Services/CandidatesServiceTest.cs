@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
+using coreEntityFramework;
+using Dal.Entities;
 
 namespace UnitTestOnline.Business.Services
 {
@@ -18,18 +21,28 @@ namespace UnitTestOnline.Business.Services
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateService()
         {
+            List<Candidate> expectedList;
             var mockRepository = Substitute.For<ICandidatesRepository>();
-            var candidateService= new CandidatesService(mockRepository);
+            var candidateService = new CandidatesService(mockRepository);
+            var options = new DbContextOptionsBuilder<MyFirstFullStackApp_DevContext>()
+            .UseInMemoryDatabase(databaseName: "Get_candidates_service")
+            .Options;
 
-            var lst = new List<CandidateModel> {
-              new CandidateModel ("camara","minamba",1),
-              new CandidateModel ("uzumaki","naruto",2),
-              new CandidateModel ("uchiha","sasuke",3),
-            };
+            using (var context = new MyFirstFullStackApp_DevContext(options))
+            {
+                context.Candidate.Add(new Candidate("camara", "minamba", 1));
+                context.Candidate.Add(new Candidate("uzumaki", "naruto", 2));
+                context.Candidate.Add(new Candidate("uchiha", "sasuke", 3));
+              
+                expectedList = context.Candidate.ToList();
+                var candidates = expectedList.Select(c => new CandidateModel(c.FirstName, c.LastName, (int)c.TestId)).ToList();
+                var result = await candidateService.GetCandidatesAsync();
 
-            var result = await candidateService.GetCandidatesAsync();
+                string serialize1 = JsonConvert.SerializeObject(expectedList);
+                string serialize2 = JsonConvert.SerializeObject(result);
 
-            Assert.AreEqual(lst, result);
+                Assert.AreEqual(serialize1, serialize2);                
+            }
         }
 
         [TestMethod]
@@ -85,6 +98,38 @@ namespace UnitTestOnline.Business.Services
             // myInteger6.A vaut 4
         }
     }
+
+
+    public class CandidatesEqual
+    {
+
+        public CandidateModel _CandidateModel { get; set; }
+
+        public CandidatesEqual(CandidateModel cm)
+        {
+            _CandidateModel = cm;
+
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                var c = (CandidatesEqual)obj;
+                return _CandidateModel == c._CandidateModel;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return -1271776452 + EqualityComparer<CandidateModel>.Default.GetHashCode(_CandidateModel);
+        }
+    }
+
 
     public class MyInteger
     {
