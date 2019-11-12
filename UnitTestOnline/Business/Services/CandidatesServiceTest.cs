@@ -38,10 +38,10 @@ namespace UnitTestOnline.Business.Services
                 var candidates = expectedList.Select(c => new CandidateModel(c.FirstName, c.LastName, (int)c.TestId)).ToList();
                 var result = await candidateService.GetCandidatesAsync();
 
-                string serialize1 = JsonConvert.SerializeObject(expectedList);
+                string serialize1 = JsonConvert.SerializeObject(candidates);
                 string serialize2 = JsonConvert.SerializeObject(result);
 
-                Assert.AreEqual(serialize1, serialize2);                
+                Assert.AreEqual(serialize1, serialize2);
             }
         }
 
