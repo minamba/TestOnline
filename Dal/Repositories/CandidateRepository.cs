@@ -35,9 +35,9 @@ namespace Dal.Repositories
 
             for (int i = 0; i < candidateEntity.Count; i++)
             {
-                var result = (from r in _MyContext.Result
+                var result =  await (from r in _MyContext.Result
                               where r.CandidateId == candidateEntity[i].Id
-                              select r).ToList();
+                              select r).ToListAsync();
 
                 ResultModel = result.Select(r => new ResultModel(r.CandidateId, r.AnswerId)).ToList();
                 candidateModel = candidateEntity.Select(c => new CandidateDTO(c.FirstName = candidateEntity[i].FirstName, c.LastName = candidateEntity[i].LastName, c.Test.Title = candidateEntity[i].Test.Title, ResultModel)).ToList();
