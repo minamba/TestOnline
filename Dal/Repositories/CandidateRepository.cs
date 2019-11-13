@@ -40,7 +40,7 @@ namespace Dal.Repositories
                               select r).ToList();
 
                 ResultModel = result.Select(r => new ResultModel(r.CandidateId, r.AnswerId)).ToList();
-                candidateModel = candidateEntity.Select(c => new CandidateDTO(c.FirstName, c.LastName, c.Test.Title, ResultModel)).ToList();
+                candidateModel = candidateEntity.Select(c => new CandidateDTO(c.FirstName = candidateEntity[i].FirstName, c.LastName = candidateEntity[i].LastName, c.Test.Title = candidateEntity[i].Test.Title, ResultModel)).ToList();
             }
 
             //return _mapper.Map<List<CandidateDTO>>(candidateEntity);
