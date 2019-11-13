@@ -31,6 +31,5 @@ namespace TestOnline.Controllers
             return Ok(lstCandidate);
         }
 
-
     }
 }

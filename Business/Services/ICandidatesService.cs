@@ -8,6 +8,6 @@ namespace Business.Services
 {
     public interface ICandidatesService
     {
-        Task<List<CandidateModel>> GetCandidatesAsync();
+        Task<List<CandidateDTO>> GetCandidatesAsync();
     }
 }

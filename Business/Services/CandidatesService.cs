@@ -17,11 +17,11 @@ namespace Business.Repositories
             _repository = repository;
         }
 
-        public async Task<List<CandidateModel>> GetCandidatesAsync()
+        public async Task<List<CandidateDTO>> GetCandidatesAsync()
         {
-            var listCandidate = await _repository.GetCandidatesAsync();
+            var Candidates = await _repository.GetCandidatesAsync();
 
-            return listCandidate;
+            return Candidates;
         }
     }
 }

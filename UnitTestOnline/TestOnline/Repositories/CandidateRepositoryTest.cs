@@ -34,6 +34,7 @@ namespace UnitTestOnline.TestOnline.Repositories
             _mapper = mapper;
         }
 
+
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateRepository()
         {

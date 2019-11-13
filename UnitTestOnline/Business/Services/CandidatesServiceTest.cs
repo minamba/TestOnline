@@ -21,28 +21,38 @@ namespace UnitTestOnline.Business.Services
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateService()
         {
-            
-            var mockRepository = Substitute.For<ICandidatesRepository>();
-            var candidateService = new CandidatesService(mockRepository);
-            var options = new DbContextOptionsBuilder<MyFirstFullStackApp_DevContext>()
-            .UseInMemoryDatabase(databaseName: "Get_candidates_service")
-            .Options;
-
-            using (var context = new MyFirstFullStackApp_DevContext(options))
+            var candidates = new List<CandidateModel>()
             {
-                context.Candidate.Add(new Candidate("camara", "minamba", 1));
-                context.Candidate.Add(new Candidate("uzumaki", "naruto", 2));
-                context.Candidate.Add(new Candidate("uchiha", "sasuke", 3));
+                new CandidateModel ("camara", "minamba", 1),
+                new CandidateModel ("uzumaki", "naruto", 2),
+                new CandidateModel ("uchiha", "sasuke", 3)
+            };
 
-                List<Candidate> expectedList  = context.Candidate.ToList();
-                var result = await candidateService.GetCandidatesAsync();
+            var mockRepository = Substitute.For<ICandidatesRepository>();
+            mockRepository.GetCandidatesAsync().Returns(candidates);
+            var candidateService = new CandidatesService(mockRepository);
 
-                string serialize1 = JsonConvert.SerializeObject(expectedList);
-                string serialize2 = JsonConvert.SerializeObject(result);
+            var result = await candidateService.GetCandidatesAsync();
+            string serialize1 = JsonConvert.SerializeObject(candidates);
+            string serialize2 = JsonConvert.SerializeObject(result);
 
-                Assert.AreEqual(serialize1, serialize2);
-            }
+            Assert.AreEqual(serialize1, serialize2);
         }
+
+
+        [TestMethod]
+        public void Candidate_note_test()
+        {
+            int note = 0;
+
+            int answerID = 3;
+            int point = 1;
+
+            note = note + point;
+
+            Assert.AreEqual(1, note);
+        }
+
 
         [TestMethod]
         public void Example_test()

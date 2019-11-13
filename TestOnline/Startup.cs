@@ -36,11 +36,22 @@ namespace TestOnline
             services.AddTransient<ICandidatesService, CandidatesService>();
             services.AddDbContext<MyFirstFullStackApp_DevContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper();
+            services.AddSwaggerGen((options) =>
+            {
+                options.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Test online API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Test online API V1");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

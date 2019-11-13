@@ -8,6 +8,6 @@ namespace Business.Repositories
 {
     public interface ICandidatesRepository
     {
-        Task<List<CandidateModel>> GetCandidatesAsync();
+        Task<List<CandidateDTO>> GetCandidatesAsync();
     }
 }
