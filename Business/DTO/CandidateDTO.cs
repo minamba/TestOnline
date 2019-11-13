@@ -12,7 +12,6 @@ namespace Business
         public string _TestName { get; set; }
         public List<ResultModel> _CandidateResult { get; set; }
 
-
         public CandidateDTO(string firstName, string lastName, string testName, List<ResultModel> candidateResult)
         {
             _FirstName = firstName;
@@ -20,6 +19,5 @@ namespace Business
             _TestName = testName;
             _CandidateResult = candidateResult;
         }
-
     }
 }

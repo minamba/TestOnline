@@ -14,7 +14,7 @@ using Business;
 
 namespace Dal.Repositories
 {
-    public class CandidateRepository : ICandidatesRepository 
+    public class CandidateRepository : ICandidatesRepository
     {
         public MyFirstFullStackApp_DevContext _MyContext { get; set; }
         private readonly IMapper _mapper;
@@ -27,25 +27,25 @@ namespace Dal.Repositories
         }
 
 
-        public async Task<IEnumerable<CandidateDTO>> GetCandidatesAsync()
+        public async Task<List<CandidateDTO>> GetCandidatesAsync()
         {
             var candidateEntity = await _MyContext.Candidate.ToListAsync();
             var candidateModel = new List<CandidateDTO>();
+            var ResultModel = new List<ResultModel>();
 
             for (int i = 0; i < candidateEntity.Count; i++)
             {
-               var  result = (from r in _MyContext.Result
+                var result = (from r in _MyContext.Result
                               where r.CandidateId == candidateEntity[i].Id
                               select r).ToList();
 
-                var ResultModel = result.Select(r => new ResultModel(r.CandidateId, r.AnswerId));
-                candidateModel = candidateEntity.Select(c => new CandidateDTO(c.FirstName, c.LastName, c.Test.Title, ResultModel));
-
-                //return candidateModel;
+                ResultModel = result.Select(r => new ResultModel(r.CandidateId, r.AnswerId)).ToList();
+                candidateModel = candidateEntity.Select(c => new CandidateDTO(c.FirstName, c.LastName, c.Test.Title, ResultModel)).ToList();
             }
 
             //return _mapper.Map<List<CandidateDTO>>(candidateEntity);
-             return candidateModel;
+            return candidateModel;
         }
     }
 }
+

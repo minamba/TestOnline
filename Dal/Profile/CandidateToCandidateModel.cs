@@ -4,6 +4,7 @@ using System.Text;
 using AutoMapper;
 using Business.Models;
 using Dal.Entities;
+using Business;
 
 namespace Dal.Profile
 {
@@ -11,7 +12,7 @@ namespace Dal.Profile
     {
         public CandidateToCandidateModel()
         {
-            CreateMap<Candidate,CandidateModel>().ReverseMap();
+            CreateMap<Candidate,CandidateDTO>().ReverseMap();
         }
     }
 }
