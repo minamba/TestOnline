@@ -33,21 +33,7 @@ namespace Business.Repositories
 
         public async Task<List<CandidateDTO>> GetCandidatesWithNotes()
         {
-            var candidates = this.GetCandidatesAsync();
-            var results = this.GetResultsAsync();
-            var note = 0;
-
-            for (int i = 0; i < candidates.Result.Count; i++)
-            {
-               for(int j=0; j< results.Result.Count; j++)
-                {
-                    // do some stuff
-                }
-
-            }
-
-
-            return await candidates;
+            //do some stuff
         }
 
     }
