@@ -46,9 +46,9 @@ namespace UnitTestOnline.Business.Services
         {
             var results = new List<ResultModel>()
             {
-                new ResultModel (1,1),
-                new ResultModel (1,11),
-                new ResultModel (1,22),
+                new ResultModel ("minamba","camara",1),
+                new ResultModel ("minamba","camara",11),
+                new ResultModel ("minamba","camara",22),
             };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();

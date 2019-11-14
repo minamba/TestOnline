@@ -6,12 +6,14 @@ namespace Business.Models
 {
     public class ResultModel
     {
-        public int? CandidateId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public int? AnswerId { get; set; }
 
-        public ResultModel(int? candidateId, int? answerId)
+        public ResultModel(string firstName, string lastName, int? answerId)
         {
-            CandidateId = candidateId;
+            FirstName = firstName;
+            LastName = lastName;
             AnswerId = answerId;
         }
     }
