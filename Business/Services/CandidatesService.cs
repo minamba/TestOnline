@@ -24,12 +24,12 @@ namespace Business.Repositories
             return Candidates;
         }
 
-        //public async Task<List<ResultModel>> GetResultsAsync()
-        //{
-        //    var results = await _repository.GetResultsAsync();
+        public async Task<List<ResultModel>> GetResultsAsync()
+        {
+            var results = await _repository.GetResultsAsync();
 
-        //    return results;
-        //}
+            return results;
+        }
 
         public async Task<List<CandidateDTO>> GetCandidatesWithNotes()
         {
@@ -38,7 +38,8 @@ namespace Business.Repositories
 
             for (int i = 0; i < candidates.Result.Count; i++)
             {
-                //do some stuff
+                candidates.Result[i].
+
             }
 
 
