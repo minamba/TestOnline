@@ -31,7 +31,7 @@ namespace Business.Repositories
             return results;
         }
 
-        public async Task<List<CandidateDTO>> GetCandidatesWithNotes()
+        public async Task<List<CandidateDTO>> CalculCandidatesNotes()
         {
             //do some stuff
         }
