@@ -70,7 +70,6 @@ namespace UnitTestOnline.TestOnline.Repositories
                 context.Result.Add(new Result(1,1));
                 context.Result.Add(new Result(1,11));
                 context.Result.Add(new Result(1,22));
-
                 var candidateRepository = new CandidateRepository(context, _mapper);
                 List<Result> expectedList;
 
