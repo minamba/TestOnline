@@ -11,5 +11,13 @@ namespace Dal.Entities
 
         public virtual Answer Answer { get; set; }
         public virtual Candidate Candidate { get; set; }
+
+
+        public Result(int candidateId, int answerID)
+        {
+            CandidateId = candidateId;
+            AnswerId = answerID;
+
+        }
     }
 }

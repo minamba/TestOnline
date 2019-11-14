@@ -42,6 +42,28 @@ namespace UnitTestOnline.Business.Services
 
 
         [TestMethod]
+        public async Task Shoud_Get_Candidates_Result()
+        {
+            var results = new List<Result>()
+            {
+                new Result (1,1),
+                new Result (1,11),
+                new Result (1,22),
+            };
+
+            var mockRepository = Substitute.For<ICandidatesRepository>();
+            mockRepository.GetResultsAsync().Returns(results);
+            var candidateService = new CandidatesService(mockRepository);
+
+            var result = await candidateService.GetResultsAsync();
+            string serialize1 = JsonConvert.SerializeObject(results);
+            string serialize2 = JsonConvert.SerializeObject(result);
+
+            Assert.AreEqual(serialize1, serialize2);
+        }
+
+
+        [TestMethod]
         public void Example_test()
         {
             // Différence entre type valeur et type référence à l'initialisation

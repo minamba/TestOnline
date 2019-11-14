@@ -9,5 +9,6 @@ namespace Business.Repositories
     public interface ICandidatesRepository
     {
         Task<List<CandidateDTO>> GetCandidatesAsync();
+        Task<List<ResultModel>> GetResultsAsync();
     }
 }

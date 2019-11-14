@@ -23,5 +23,10 @@ namespace Business.Repositories
 
             return Candidates;
         }
+
+        public Task<List<ResultModel>> GetResultsAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

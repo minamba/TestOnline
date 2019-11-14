@@ -29,11 +29,21 @@ namespace Dal.Repositories
 
         public async Task<List<CandidateDTO>> GetCandidatesAsync()
         {
-            var candidateEntity = await _MyContext.Candidate.Include("Test").Include("Result").ToListAsync();
+            var candidateEntity = await _MyContext.Candidate.Include("Test").ToListAsync();
             var candidateModel = candidateEntity.Select(c => new CandidateDTO(c.FirstName,c.LastName,c.Test.Title,0)).ToList();
 
             return _mapper.Map<List<CandidateDTO>>(candidateEntity);
         }
+
+
+        public async Task<List<ResultModel>> GetResultsAsync()
+        {
+            var candidateResults = await _MyContext.Result.ToListAsync();
+            var resultModel = candidateResults.Select(r => new ResultModel(r.CandidateId, r.AnswerId)).ToList();
+
+            return _mapper.Map<List<ResultModel>>(candidateResults);
+        }
+
     }
 }
 
