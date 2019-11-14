@@ -10,6 +10,6 @@ namespace Business.Services
     {
         Task<List<CandidateDTO>> GetCandidatesAsync();
         Task<List<ResultModel>> GetResultsAsync();
-        Task<List<CandidateDTO>> GetCandidatesWithNotes();
+        Task<List<CandidateDTO>> CalculCandidatesNotes();
     }
 }

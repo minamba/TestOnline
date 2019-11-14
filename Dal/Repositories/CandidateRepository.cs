@@ -38,7 +38,7 @@ namespace Dal.Repositories
 
         public async Task<List<ResultModel>> GetResultsAsync()
         {
-            var candidateResults = await _MyContext.Result.ToListAsync();
+            var candidateResults = await _MyContext.Result.Include("Answer").ToListAsync();
             var resultModel = candidateResults.Select(r => new ResultModel(r.Candidate.FirstName, r.Candidate.LastName, r.AnswerId)).ToList();
 
             return _mapper.Map<List<ResultModel>>(candidateResults);
