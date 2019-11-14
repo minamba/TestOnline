@@ -57,5 +57,30 @@ namespace UnitTestOnline.TestOnline.Repositories
                 CollectionAssert.AreEqual(expectedList, result);
             }
         }
+
+        [TestMethod]
+        public async Task Shoud_Get_CandidatesResults_In_CandidateRepository()
+        {
+            var options = new DbContextOptionsBuilder<MyFirstFullStackApp_DevContext>()
+            .UseInMemoryDatabase(databaseName: "Get_candidatesResult_repository")
+            .Options;
+
+            using (var context = new MyFirstFullStackApp_DevContext(options))
+            {
+                context.Result.Add(new Result(1,1));
+                context.Result.Add(new Result(1,11));
+                context.Result.Add(new Result(1,22));
+
+                var candidateRepository = new CandidateRepository(context, _mapper);
+                List<Result> expectedList;
+
+                expectedList = context.Result.ToList();
+                var result = await candidateRepository.GetResultsAsync();
+
+                CollectionAssert.AreEqual(expectedList, result);
+            }
+
+        }
+
     }
 }
