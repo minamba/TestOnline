@@ -10,7 +10,7 @@ namespace Business.Models
         public int? AnswerId { get; set; }
         public int? IsGood { get; set; }
 
-        public ResultModel(int candidateId, int? answerId, int? isGood)
+        public ResultModel(int? candidateId, int? answerId, int? isGood)
         {
             CandidateId = candidateId;
             AnswerId = answerId;
