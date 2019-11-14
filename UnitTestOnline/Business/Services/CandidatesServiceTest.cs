@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using coreEntityFramework;
 using Dal.Entities;
+using Business;
 
 namespace UnitTestOnline.Business.Services
 {
@@ -21,11 +22,11 @@ namespace UnitTestOnline.Business.Services
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateService()
         {
-            var candidates = new List<CandidateModel>()
+            var candidates = new List<CandidateDTO>()
             {
-                new CandidateModel ("camara", "minamba", 1),
-                new CandidateModel ("uzumaki", "naruto", 2),
-                new CandidateModel ("uchiha", "sasuke", 3)
+                new CandidateDTO ("camara", "minamba","c#",12),
+                new CandidateDTO ("uzumaki", "naruto","python",14),
+                new CandidateDTO ("uchiha", "sasuke",".net core",18)
             };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
@@ -37,20 +38,6 @@ namespace UnitTestOnline.Business.Services
             string serialize2 = JsonConvert.SerializeObject(result);
 
             Assert.AreEqual(serialize1, serialize2);
-        }
-
-
-        [TestMethod]
-        public void Candidate_note_test()
-        {
-            int note = 0;
-
-            int answerID = 3;
-            int point = 1;
-
-            note = note + point;
-
-            Assert.AreEqual(1, note);
         }
 
 

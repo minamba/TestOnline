@@ -23,8 +23,7 @@ namespace Dal.Entities
         {
             FirstName = firstName;
             LastName = lastName;
-            TestId = testId;
-                
+            TestId = testId;              
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business;
 using Business.Models;
 using Business.Repositories;
 using Business.Services;
@@ -24,11 +25,12 @@ namespace TestOnline.Controllers
         }
 
         [HttpGet]
-        public async Task<OkObjectResult> GetCandidatesAsync()
+        public async Task<List<CandidateDTO>> GetCandidatesAsync()
         {      
-            var lstCandidate = await _service.GetCandidatesAsync();
+            var candidates = await _service.GetCandidatesAsync();
 
-            return Ok(lstCandidate);
+            //return Ok(candidates);
+            return candidates;
         }
 
     }

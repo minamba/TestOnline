@@ -7,17 +7,20 @@ namespace Business
 {
     public class CandidateDTO
     {
-        public string _FirstName { get; set; }
-        public string _LastName { get; set; }
-        public string _TestName { get; set; }
-        public List<ResultModel> _CandidateResult { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string TestName { get; set; }
+        public int Note { get; set; }
 
-        public CandidateDTO(string firstName, string lastName, string testName, List<ResultModel> candidateResult)
+        public CandidateDTO()
+        {}
+
+        public CandidateDTO(string firstName, string lastName, string testName, int note)
         {
-            _FirstName = firstName;
-            _LastName = lastName;
-            _TestName = testName;
-            _CandidateResult = candidateResult;
+            FirstName = firstName;
+            LastName = lastName;
+            TestName = testName;
+            Note = note;
         }
     }
 }
