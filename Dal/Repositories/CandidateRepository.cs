@@ -36,12 +36,12 @@ namespace Dal.Repositories
         }
 
 
-        public async Task<List<ResultModel>> GetResultsAsync()
+        public async Task<List<ResultDTO>> GetResultsAsync()
         {
             var resultEntity = await _MyContext.Result.Include("Answer").ToListAsync();
-            var resultModel = resultEntity.Select(r => new ResultModel(r.CandidateId, r.AnswerId,r.Answer.IsGood));
+            var resultModel = resultEntity.Select(r => new ResultDTO(r.CandidateId, r.AnswerId,r.Answer.IsGood));
 
-            return _mapper.Map<List<ResultModel>>(resultEntity);
+            return _mapper.Map<List<ResultDTO>>(resultEntity);
         }
 
     }

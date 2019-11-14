@@ -10,7 +10,7 @@ namespace Dal.Profile
     {
         public ResultToResultModel()
         {
-            CreateMap<Result, ResultModel>().ReverseMap();
+            CreateMap<Result, ResultDTO>().ReverseMap();
         }
     }
 }

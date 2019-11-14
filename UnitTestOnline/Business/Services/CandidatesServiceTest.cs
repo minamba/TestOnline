@@ -44,11 +44,11 @@ namespace UnitTestOnline.Business.Services
         [TestMethod]
         public async Task Shoud_Get_Candidates_Result()
         {
-            var results = new List<ResultModel>()
+            var results = new List<ResultDTO>()
             {
-                new ResultModel (1,1,1),
-                new ResultModel (1,11,0),
-                new ResultModel (1,22,1),
+                new ResultDTO (1,1,1),
+                new ResultDTO (1,11,0),
+                new ResultDTO (1,22,1),
             };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();

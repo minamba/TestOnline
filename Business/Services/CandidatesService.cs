@@ -27,7 +27,7 @@ namespace Business.Repositories
             return Candidates.ToList();
         }
 
-        public async Task<List<ResultModel>> GetResultsAsync()
+        public async Task<List<ResultDTO>> GetResultsAsync()
         {
             var results = await _repository.GetResultsAsync();
 
