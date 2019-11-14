@@ -3,6 +3,7 @@ using Business.Models;
 using Business.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,11 +18,13 @@ namespace Business.Repositories
             _repository = repository;
         }
 
+
+
         public async Task<List<CandidateDTO>> GetCandidatesAsync()
         {
             var Candidates = await _repository.GetCandidatesAsync();
 
-            return Candidates;
+            return Candidates.ToList();
         }
 
         public async Task<List<ResultModel>> GetResultsAsync()
@@ -31,10 +34,10 @@ namespace Business.Repositories
             return results;
         }
 
-        public async Task<List<CandidateDTO>> CalculCandidatesNotes()
-        {
-            //do some stuff
-        }
 
+        public Task<List<CandidateDTO>> CalculCandidatesNotes()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

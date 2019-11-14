@@ -27,7 +27,7 @@ namespace TestOnline.Controllers
         [HttpGet]
         public async Task<List<CandidateDTO>> GetCandidatesAsync()
         {      
-            var candidates = await _service.GetCandidatesAsync();
+            var candidates = await _service.CalculCandidatesNotes();
 
             //return Ok(candidates);
             return candidates;
