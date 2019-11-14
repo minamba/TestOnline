@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Dal.Profile
 {
-    public class ResultToResultModel : AutoMapper.Profile
+    public class ResultToResultDTO : AutoMapper.Profile
     {
-        public ResultToResultModel()
+        public ResultToResultDTO()
         {
             CreateMap<Result, ResultDTO>().ReverseMap();
         }

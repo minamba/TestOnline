@@ -43,7 +43,6 @@ namespace Dal.Repositories
 
             return _mapper.Map<List<ResultDTO>>(resultEntity);
         }
-
     }
 }
 
