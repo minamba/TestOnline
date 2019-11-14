@@ -35,9 +35,12 @@ namespace Business.Repositories
         }
 
 
-        public Task<List<CandidateDTO>> CalculCandidatesNotes()
+        public async Task<List<CandidateDTO>> CalculCandidatesNotes()
         {
-            throw new NotImplementedException();
+            var candidates = await this.GetCandidatesAsync();
+            var results = await this.GetResultsAsync();
+
+            return null;
         }
     }
 }

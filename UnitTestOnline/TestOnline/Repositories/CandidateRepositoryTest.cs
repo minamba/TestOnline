@@ -29,6 +29,7 @@ namespace UnitTestOnline.TestOnline.Repositories
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new CandidateToCandidateModel());
+                mc.AddProfile(new ResultToResultModel());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             _mapper = mapper;

@@ -16,6 +16,11 @@ namespace Business.Models
             AnswerId = answerId;
             IsGood = isGood;
         }
+
+        public ResultModel()
+        {
+
+        }
     }
 
 
