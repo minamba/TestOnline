@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Business.Models
 {
@@ -8,15 +6,7 @@ namespace Business.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int? TestId { get; set; }
-
-
-        public CandidateModel(string firstName, string lastName, int testId)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            TestId = testId;
-
-        }
+        public TestModel Test { get; set; }
+        public IEnumerable<ResultModel> Result { get; set; }
     }
 }

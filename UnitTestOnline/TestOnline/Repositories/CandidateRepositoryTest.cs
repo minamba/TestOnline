@@ -1,21 +1,13 @@
-﻿using AutoMapper;
-using Business.Models;
-using Business.Repositories;
-using Business.Services;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
 using coreEntityFramework;
 using Dal.Entities;
 using Dal.Profile;
 using Dal.Repositories;
-using Dal.Utilities;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using TestOnline.Controllers;
 
 namespace UnitTestOnline.TestOnline.Repositories
 {
@@ -34,7 +26,6 @@ namespace UnitTestOnline.TestOnline.Repositories
             IMapper mapper = mappingConfig.CreateMapper();
             _mapper = mapper;
         }
-
 
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateRepository()
@@ -75,12 +66,10 @@ namespace UnitTestOnline.TestOnline.Repositories
                 List<Result> expectedList;
 
                 expectedList = context.Result.ToList();
-                var result = await candidateRepository.GetResultsAsync();
+                var result = await candidateRepository.GetTestsAsync();
 
                 CollectionAssert.AreEqual(expectedList, result);
             }
-
         }
-
     }
 }

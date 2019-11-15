@@ -1,18 +1,12 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Business.Models;
 using Business.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
 using Newtonsoft.Json;
-using Microsoft.EntityFrameworkCore;
-using coreEntityFramework;
-using Dal.Entities;
-using Business;
+using NSubstitute;
 
 namespace UnitTestOnline.Business.Services
 {
@@ -22,12 +16,7 @@ namespace UnitTestOnline.Business.Services
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateService()
         {
-            var candidates = new List<CandidateDTO>()
-            {
-                new CandidateDTO ("camara", "minamba","c#",12),
-                new CandidateDTO ("uzumaki", "naruto","python",14),
-                new CandidateDTO ("uchiha", "sasuke",".net core",18)
-            };
+            var candidates = GetCandidateModelFixture();
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
             mockRepository.GetCandidatesAsync().Returns(candidates);
@@ -40,29 +29,41 @@ namespace UnitTestOnline.Business.Services
             Assert.AreEqual(serialize1, serialize2);
         }
 
-
-        [TestMethod]
-        public async Task Shoud_Get_Candidates_Result()
+        private List<CandidateModel> GetCandidateModelFixture()
         {
-            var results = new List<ResultDTO>()
+            return new List<CandidateModel>()
             {
-                new ResultDTO (1,1,1),
-                new ResultDTO (1,11,0),
-                new ResultDTO (1,22,1),
+                new CandidateModel
+                {
+                    LastName = "camara",
+                    FirstName = "minamba",
+                    Test = new TestModel
+                    {
+                        Title = "C#"
+                    }
+                },
+                new CandidateModel
+                {
+                    LastName = "uzumaki",
+                    FirstName = "naruto",
+                    Test = new TestModel
+                    {
+                        Title = "python"
+                    }
+                },
+                new CandidateModel
+                {
+                    LastName = "uchiha",
+                    FirstName = "sasuke",
+                    Test = new TestModel
+                    {
+                        Title = ".net core"
+                    }
+                }
             };
-
-            var mockRepository = Substitute.For<ICandidatesRepository>();
-            mockRepository.GetResultsAsync().Returns(results);
-            var candidateService = new CandidatesService(mockRepository);
-
-            var result = await candidateService.GetResultsAsync();
-            string serialize1 = JsonConvert.SerializeObject(results);
-            string serialize2 = JsonConvert.SerializeObject(result);
-
-            Assert.AreEqual(serialize1, serialize2);
         }
 
-
+        #region FakeTest
         [TestMethod]
         public void Example_test()
         {
@@ -115,9 +116,10 @@ namespace UnitTestOnline.Business.Services
             // myInteger5.A vaut 4
             // myInteger6.A vaut 4
         }
+        #endregion
     }
 
-
+    #region Fake clas
     public class CandidatesEqual
     {
 
@@ -141,14 +143,11 @@ namespace UnitTestOnline.Business.Services
                 return _CandidateModel == c._CandidateModel;
             }
         }
-
         public override int GetHashCode()
         {
             return -1271776452 + EqualityComparer<CandidateModel>.Default.GetHashCode(_CandidateModel);
         }
     }
-
-
     public class MyInteger
     {
         public MyInteger(int a)
@@ -186,4 +185,5 @@ namespace UnitTestOnline.Business.Services
             return A;
         }
     }
+    #endregion
 }

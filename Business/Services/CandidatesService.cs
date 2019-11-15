@@ -1,11 +1,7 @@
-﻿using AutoMapper;
-using Business.Models;
-using Business.Services;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Business.Services;
 
 namespace Business.Repositories
 {
@@ -18,28 +14,22 @@ namespace Business.Repositories
             _repository = repository;
         }
 
-
-
         public async Task<List<CandidateDTO>> GetCandidatesAsync()
         {
-            var Candidates = await _repository.GetCandidatesAsync();
+            var candidates = await _repository.GetCandidatesAsync();
+            var tests = await _repository.GetTestsAsync();
 
-            return Candidates.ToList();
+            // TODO call CalculCandidatesNotes
+
+
+            return candidates.Select(c => new CandidateDTO
+            {
+                // TODO remplir les champs utiles
+            }).ToList();
         }
-
-        public async Task<List<ResultDTO>> GetResultsAsync()
-        {
-            var results = await _repository.GetResultsAsync();
-
-            return results;
-        }
-
 
         public async Task<List<CandidateDTO>> CalculCandidatesNotes()
         {
-            var candidates = await this.GetCandidatesAsync();
-            var results = await this.GetResultsAsync();
-
             return null;
         }
     }
