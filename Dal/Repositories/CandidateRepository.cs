@@ -51,6 +51,20 @@ namespace Dal.Repositories
 
             return testModel;
         }
+
+        // Get old result
+        public async Task<List<ResultModel>> GetResultsAsync()
+        {
+            var resultEntity = await _context.Result.Include(r => r.Answer).ToListAsync();
+            var resultModel = resultEntity.Select(r => new ResultModel
+            {
+                AnswerId = r.AnswerId,
+                IsGood = r.Answer == null ? false : r.Answer.IsGood
+                //IsGood = r.Answer?.IsGood // Idem que la ligne, nouveauté de C# 7.???
+            }).ToList();
+
+            return resultModel;
+        }
     }
 }
 
