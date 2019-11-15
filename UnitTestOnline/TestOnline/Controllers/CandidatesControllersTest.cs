@@ -41,7 +41,7 @@ namespace UnitTestOnline.TestOnline.Controllers
             string serialize2 = JsonConvert.SerializeObject(result);
 
             //Assert.AreEqual(200, okResult.StatusCode);
-              Assert.AreEqual(serialize1, serialize2); //Test return objects 
+             Assert.AreEqual(serialize1, serialize2); //Test return objects 
         }
     }
 }

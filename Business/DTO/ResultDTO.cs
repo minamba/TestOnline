@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.Models
+namespace Business
 {
     public class ResultDTO
     {
