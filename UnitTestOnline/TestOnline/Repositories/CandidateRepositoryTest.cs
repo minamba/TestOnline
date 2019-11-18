@@ -8,6 +8,7 @@ using Dal.Profile;
 using Dal.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Business.Models;
 
 namespace UnitTestOnline.TestOnline.Repositories
 {
@@ -30,13 +31,14 @@ namespace UnitTestOnline.TestOnline.Repositories
         [TestMethod]
         public async Task Shoud_Get_Candidates_In_CandidateRepository()
         {
+
             var options = new DbContextOptionsBuilder<MyFirstFullStackApp_DevContext>()
             .UseInMemoryDatabase(databaseName: "Get_candidates_repository")
             .Options;
 
             using (var context = new MyFirstFullStackApp_DevContext(options))
             {
-                context.Candidate.Add(new Candidate("camara", "minamba", 1));
+                context.Candidate.Add(new Candidate("camara", "minamba",2));
                 context.Candidate.Add(new Candidate("uzumaki", "naruto", 2));
                 context.Candidate.Add(new Candidate("uchiha", "sasuke", 3));
 
@@ -71,5 +73,29 @@ namespace UnitTestOnline.TestOnline.Repositories
                 CollectionAssert.AreEqual(expectedList, result);
             }
         }
+
+        [TestMethod]
+        public async Task Shoud_Get_TestAsync_In_CandidateRepository()
+        {
+            var options = new DbContextOptionsBuilder<MyFirstFullStackApp_DevContext>()
+            .UseInMemoryDatabase(databaseName: "Get_candidatesTest_repository")
+            .Options;
+
+
+            using (var context = new MyFirstFullStackApp_DevContext(options))
+            {
+                context.Test.Add(new Test(1, "c#"));
+                context.Test.Add(new Test(2, "php"));
+                context.Test.Add(new Test(3, "python"));
+                var candidateRepository = new CandidateRepository(context, _mapper);
+                List<Test> expectedList;
+
+                expectedList = context.Test.ToList();
+                var result = await candidateRepository.GetTestsAsync();
+
+                CollectionAssert.AreEqual(expectedList, result);
+            }
+        }
+
     }
 }

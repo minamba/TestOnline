@@ -33,5 +33,25 @@ namespace TestOnline.Controllers
             return candidates;
         }
 
+        [HttpGet]
+        public async Task<int> GetAverageAsync()
+        {
+            int average = await _service.GetAverageAsync();
+
+            return average;
+        }
+
+
+        [HttpGet]
+        public async Task<double> GetEcartTypeAsync()
+        {
+            double ecartType = await _service.GetEcartTypeAsync();
+
+            return ecartType;
+        }
+
+
+
+
     }
 }

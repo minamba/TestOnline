@@ -7,6 +7,11 @@ using Business.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NSubstitute;
+using Business;
+using Business.Services;
+using TestOnline.Controllers;
+using Dal.Entities;
+using Dal.Repositories;
 
 namespace UnitTestOnline.Business.Services
 {
@@ -29,7 +34,7 @@ namespace UnitTestOnline.Business.Services
             Assert.AreEqual(serialize1, serialize2);
         }
 
-        private List<CandidateModel> GetCandidateModelFixture()
+        private List<CandidateModel> GetCandidateModelFixture() //QUAND LE CODE EST TROP LONG ON FAIT CE GENRE DE METHODE (règle de clean code)
         {
             return new List<CandidateModel>()
             {
@@ -62,6 +67,56 @@ namespace UnitTestOnline.Business.Services
                 }
             };
         }
+
+
+        [TestMethod]
+        public async Task Shoud_Get_Average_In_Controller()
+        {
+            int average = 14;
+            var candidates = new List<CandidateDTO>()
+            {
+                new CandidateDTO ("camara", "minamba","c#",12),
+                new CandidateDTO ("uzumaki", "naruto","python",14),
+                new CandidateDTO ("uchiha", "sasuke",".net core",16)
+            };
+
+            var candidateService = Substitute.For<ICandidatesService>();
+            candidateService.GetAverageAsync().Returns(average);
+            var candidateController = new CandidatesController(candidateService);
+            var result = await candidateController.GetAverageAsync();
+            string serialize1 = JsonConvert.SerializeObject(average);
+            string serialize2 = JsonConvert.SerializeObject(result);
+
+
+            Assert.AreEqual(average, result);
+
+        }
+
+
+        [TestMethod]
+        public async Task Shoud_Get_EcartType_In_Controller()
+        {
+            int average = 14;
+            double ecartType = 2.6; 
+            var candidates = new List<CandidateDTO>()
+            {
+                new CandidateDTO ("camara", "minamba","c#",12),
+                new CandidateDTO ("uzumaki", "naruto","python",14),
+                new CandidateDTO ("uchiha", "sasuke",".net core",16)
+            };
+
+            var candidateService = Substitute.For<ICandidatesService>();
+            candidateService.GetEcartTypeAsync().Returns(ecartType);
+            var candidateController = new CandidatesController(candidateService);
+            var result = await candidateController.GetEcartTypeAsync();
+            string serialize1 = JsonConvert.SerializeObject(ecartType);
+            string serialize2 = JsonConvert.SerializeObject(result);
+
+
+            Assert.AreEqual(ecartType, result);
+        }
+
+
 
         #region FakeTest
         [TestMethod]

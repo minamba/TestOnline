@@ -16,7 +16,7 @@ namespace Dal.Repositories
 
         public CandidateRepository(MyFirstFullStackApp_DevContext dbcontext, IMapper mapper)
         {
-            _mapper = mapper;
+            _mapper = mapper;  
             _context = dbcontext;
         }
 
@@ -27,13 +27,13 @@ namespace Dal.Repositories
             {
                 LastName = c.LastName,
                 FirstName = c.FirstName,
-                Test = new TestModel
+                Test = new TestModel ()
                 {
                     Title = c.Test.Title
                 },
                 Result = c.Result.Select(r => new ResultModel
                 {
-                    AnswerId = r.AnswerId
+                   AnswerId = r.AnswerId
                 })
             }).ToList();
 
@@ -46,25 +46,42 @@ namespace Dal.Repositories
             var testModel = testEntity.Select(t => new TestModel
             {
                 Title = t.Title,
+                QuestionId = t.Id,
                 QuestionsNumber = t.TestQuestion.Count
             }).ToList();
 
             return testModel;
         }
 
-        // Get old result
-        public async Task<List<ResultModel>> GetResultsAsync()
+
+        public async Task<List<AnswerModel>> GetAnswersAsync()
         {
-            var resultEntity = await _context.Result.Include(r => r.Answer).ToListAsync();
-            var resultModel = resultEntity.Select(r => new ResultModel
+            var answerEntity = await _context.Answer.ToListAsync();
+            var answerModel = answerEntity.Select(a => new AnswerModel
             {
-                AnswerId = r.AnswerId,
-                IsGood = r.Answer == null ? false : r.Answer.IsGood
-                //IsGood = r.Answer?.IsGood // Idem que la ligne, nouveauté de C# 7.???
+                Id = a.Id,
+                QuestionId = a.QuestionId,
+                Code = a.Code,
+                IsGood = a.IsGood,
+                Label = a.Label
             }).ToList();
 
-            return resultModel;
+            return answerModel;
         }
+
+        //// Get old result
+        //public async Task<List<ResultModel>> GetResultsAsync()
+        //{
+        //    var resultEntity = await _context.Result.Include(r => r.Answer).ToListAsync();
+        //    var resultModel = resultEntity.Select(r => new ResultModel
+        //    {
+        //        AnswerId = r.AnswerId,
+        //        IsGood = r.Answer == null ? false : r.Answer.IsGood
+        //        //IsGood = r.Answer?.IsGood // Idem que la ligne, nouveauté de C# 7.???
+        //    }).ToList();
+
+        //    return resultModel;
+        //}
     }
 }
 

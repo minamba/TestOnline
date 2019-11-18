@@ -8,5 +8,6 @@ namespace Business.Repositories
     {
         Task<List<CandidateModel>> GetCandidatesAsync();
         Task<List<TestModel>> GetTestsAsync();
+        Task<List<AnswerModel>> GetAnswersAsync();
     }
 }

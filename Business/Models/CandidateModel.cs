@@ -8,5 +8,17 @@ namespace Business.Models
         public string LastName { get; set; }
         public TestModel Test { get; set; }
         public IEnumerable<ResultModel> Result { get; set; }
+
+
+        public CandidateModel(string firstName, string lastName, TestModel test, IEnumerable<ResultModel> result)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Test = test;
+            Result = result;
+        }
+
+        public CandidateModel()
+        {}
     }
 }
