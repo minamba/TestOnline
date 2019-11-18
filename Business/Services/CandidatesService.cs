@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Services;
 using Business.Models;
+using System;
 
 namespace Business.Repositories
 {
@@ -76,9 +77,27 @@ namespace Business.Repositories
         }
 
 
-        public Task<double> GetEcartTypeAsync()
+        public async Task<double> GetEcartTypeAsync()
         {
-            throw new System.NotImplementedException();
+            double variance = 0;
+            double puissance = 0;
+            double ecartType = 0;
+            int average = await GetAverageAsync();
+            var candidates = await GetCandidatesAsync();
+            
+            foreach(var c in candidates)
+            {
+                puissance = c.Note - average;
+                puissance = Math.Pow(puissance,2);
+
+                variance = variance + puissance;
+                puissance = 0;
+            }
+            variance = variance / candidates.Count;
+            ecartType = Math.Sqrt(variance);
+
+
+            return ecartType;
         }
     }
 }
