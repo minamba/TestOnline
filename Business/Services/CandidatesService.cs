@@ -60,7 +60,7 @@ namespace Business.Repositories
             return candidatesDTO;
         }
 
-        public async Task<int> GetAverageAsync()
+        public async Task<double> GetAverageAsync()
         {
             int average = 0;
             var candidates = await GetCandidatesAsync();
@@ -82,7 +82,7 @@ namespace Business.Repositories
             double variance = 0;
             double puissance = 0;
             double ecartType = 0;
-            int average = await GetAverageAsync();
+            double average = await GetAverageAsync();
             var candidates = await GetCandidatesAsync();
             
             foreach(var c in candidates)

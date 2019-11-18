@@ -34,9 +34,9 @@ namespace TestOnline.Controllers
         }
 
         [HttpGet]
-        public async Task<int> GetAverageAsync()
+        public async Task<double> GetAverageAsync()
         {
-            int average = await _service.GetAverageAsync();
+            double average = await _service.GetAverageAsync();
 
             return average;
         }
