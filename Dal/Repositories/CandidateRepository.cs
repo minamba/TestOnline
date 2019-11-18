@@ -69,6 +69,16 @@ namespace Dal.Repositories
             return answerModel;
         }
 
+        public Task<double> GetAverageAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<double> GetEcartTypeAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
         //// Get old result
         //public async Task<List<ResultModel>> GetResultsAsync()
         //{

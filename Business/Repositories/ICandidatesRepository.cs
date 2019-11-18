@@ -10,5 +10,6 @@ namespace Business.Repositories
         Task<List<TestModel>> GetTestsAsync();
         Task<List<AnswerModel>> GetAnswersAsync();
         Task<double> GetAverageAsync();
+        Task<double> GetEcartTypeAsync();
     }
 }
