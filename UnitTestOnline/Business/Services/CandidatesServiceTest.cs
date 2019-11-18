@@ -80,10 +80,10 @@ namespace UnitTestOnline.Business.Services
                 new CandidateDTO ("uchiha", "sasuke",".net core",16)
             };
 
-            var candidateService = Substitute.For<ICandidatesService>();
-            candidateService.GetAverageAsync().Returns(average);
-            var candidateController = new CandidatesController(candidateService);
-            var result = await candidateController.GetAverageAsync();
+            var mockRepository = Substitute.For<ICandidatesRepository>();
+            mockRepository.GetAverageAsync().Returns(average);
+            var candidateService = new CandidatesService(mockRepository);
+            var result = await candidateService.GetAverageAsync();
             string serialize1 = JsonConvert.SerializeObject(average);
             string serialize2 = JsonConvert.SerializeObject(result);
 
@@ -96,7 +96,6 @@ namespace UnitTestOnline.Business.Services
         [TestMethod]
         public async Task Shoud_Get_EcartType_In_Controller()
         {
-            int average = 14;
             double ecartType = 2.6; 
             var candidates = new List<CandidateDTO>()
             {
@@ -105,10 +104,10 @@ namespace UnitTestOnline.Business.Services
                 new CandidateDTO ("uchiha", "sasuke",".net core",16)
             };
 
-            var candidateService = Substitute.For<ICandidatesService>();
-            candidateService.GetEcartTypeAsync().Returns(ecartType);
-            var candidateController = new CandidatesController(candidateService);
-            var result = await candidateController.GetEcartTypeAsync();
+            var mockRepository = Substitute.For<ICandidatesRepository>();
+            mockRepository.GetAverageAsync().Returns(ecartType);
+            var candidateService = new CandidatesService(mockRepository);
+            var result = await candidateService.GetEcartTypeAsync();
             string serialize1 = JsonConvert.SerializeObject(ecartType);
             string serialize2 = JsonConvert.SerializeObject(result);
 
