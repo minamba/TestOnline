@@ -70,7 +70,7 @@ namespace UnitTestOnline.Business.Services
 
 
         [TestMethod]
-        public async Task Shoud_Get_Average_In_Controller()
+        public async Task Shoud_Get_Average_In_CandidateService()
         {
             int average = 14;
             var candidates = new List<CandidateDTO>()
@@ -94,7 +94,7 @@ namespace UnitTestOnline.Business.Services
 
 
         [TestMethod]
-        public async Task Shoud_Get_EcartType_In_Controller()
+        public async Task Shoud_Get_EcartType_In_CandidateService()
         {
             double ecartType = 2.6; 
             var candidates = new List<CandidateDTO>()
