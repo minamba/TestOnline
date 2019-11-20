@@ -73,12 +73,6 @@ namespace UnitTestOnline.Business.Services
         public async Task Shoud_Get_Average_In_CandidateService()
         {
             int average = 14;
-            var candidates = new List<CandidateDTO>()
-            {
-                new CandidateDTO ("camara", "minamba","c#",12),
-                new CandidateDTO ("uzumaki", "naruto","python",14),
-                new CandidateDTO ("uchiha", "sasuke",".net core",16)
-            };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
             mockRepository.GetAverageAsync().Returns(average);
@@ -97,15 +91,9 @@ namespace UnitTestOnline.Business.Services
         public async Task Shoud_Get_EcartType_In_CandidateService()
         {
             double ecartType = 2.6; 
-            var candidates = new List<CandidateDTO>()
-            {
-                new CandidateDTO ("camara", "minamba","c#",12),
-                new CandidateDTO ("uzumaki", "naruto","python",14),
-                new CandidateDTO ("uchiha", "sasuke",".net core",16)
-            };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
-            mockRepository.GetAverageAsync().Returns(ecartType);
+            mockRepository.GetEcartTypeAsync().Returns(ecartType);
             var candidateService = new CandidatesService(mockRepository);
             var result = await candidateService.GetEcartTypeAsync();
             string serialize1 = JsonConvert.SerializeObject(ecartType);
