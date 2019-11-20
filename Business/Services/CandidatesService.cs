@@ -99,5 +99,12 @@ namespace Business.Repositories
 
             return ecartType;
         }
+
+        public async Task<CandidateDTO> AddCandidateTestAsync(string firstName, string lastName, string testName)
+        {
+            CandidateDTO candidate = await _repository.AddCandidateTestAsync(firstName, lastName, testName);
+
+            return candidate;
+        }
     }
 }

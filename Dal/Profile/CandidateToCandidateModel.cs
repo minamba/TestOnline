@@ -12,7 +12,7 @@ namespace Dal.Profile
     {
         public CandidateToCandidateModel()
         {
-            CreateMap<Candidate,CandidateModel>().ReverseMap();
+            CreateMap<Entities.Candidate, Entities.Candidate>().ReverseMap();
         }
     }
 }

@@ -1,20 +1,11 @@
 ﻿using AutoMapper;
 using Business;
-using Business.Models;
-using Business.Repositories;
 using Business.Services;
-using coreEntityFramework;
 using Dal.Entities;
-using Dal.Repositories;
-using Dal.Utilities;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NSubstitute;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using TestOnline.Controllers;
 namespace UnitTestOnline.TestOnline.Controllers
@@ -77,27 +68,25 @@ namespace UnitTestOnline.TestOnline.Controllers
         }
 
 
-        //[TestMethod]
-        //public async Task Shoud_Add_CandidateTest_In_CandidateService()
-        //{
-        //    var candidate = new Candidate()
-        //    {
-        //        FirstName = "Minamba",
-        //        LastName = "Camara",
-        //        TestId = 1
-        //    };
+        [TestMethod]
+        public async Task Shoud_Add_CandidateTest_In_CandidateService()
+        {
+            var candidate = new CandidateDTO()
+            {
+                FirstName = "Minamba",
+                LastName = "Camara",
+                TestName = "c#"
+            };
 
+            var candidateService = Substitute.For<ICandidatesService>();
+            candidateService.AddCandidateTestAsync(candidate.FirstName, candidate.LastName, candidate.TestName).Returns(candidate);
+            var candidateController = new CandidatesController(candidateService);
+            var result = await candidateController.AddCandidateTestAsync(candidate.FirstName, candidate.LastName, candidate.TestName);
+            string serialize1 = JsonConvert.SerializeObject(candidate);
+            string serialize2 = JsonConvert.SerializeObject(result);
 
-        //    var candidateService = Substitute.For<ICandidatesService>();
-        //    candidateService.AddCandidateAsync().Returns(candidate);
-        //    var candidateController = new CandidatesController(candidateService);
-        //    var result = await candidateController.AddCandidateAsync();
-        //    string serialize1 = JsonConvert.SerializeObject(candidate);
-        //    string serialize2 = JsonConvert.SerializeObject(result);
-
-
-        //    Assert.AreEqual(serialize1, serialize2);
-        //}
+            Assert.AreEqual(serialize1, serialize2);
+        }
 
 
     }

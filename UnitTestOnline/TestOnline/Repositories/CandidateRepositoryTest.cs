@@ -8,7 +8,6 @@ using Dal.Profile;
 using Dal.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Business.Models;
 
 namespace UnitTestOnline.TestOnline.Repositories
 {

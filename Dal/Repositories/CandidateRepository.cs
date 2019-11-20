@@ -6,6 +6,8 @@ using Business.Models;
 using Business.Repositories;
 using coreEntityFramework;
 using Microsoft.EntityFrameworkCore;
+using Business;
+using Dal.Entities;
 
 namespace Dal.Repositories
 {
@@ -20,10 +22,10 @@ namespace Dal.Repositories
             _context = dbcontext;
         }
 
-        public async Task<List<CandidateModel>> GetCandidatesAsync()
+        public async Task<List<Business.Models.Candidate>> GetCandidatesAsync()
         {
             var candidateEntity = await _context.Candidate.Include(c => c.Test).Include(c => c.Result).ToListAsync();
-            var candidateModel = candidateEntity.Select(c => new CandidateModel
+            var candidateModel = candidateEntity.Select(c => new Business.Models.Candidate
             {
                 LastName = c.LastName,
                 FirstName = c.FirstName,
@@ -77,6 +79,32 @@ namespace Dal.Repositories
         public Task<double> GetEcartTypeAsync()
         {
             throw new System.NotImplementedException();
+        }
+
+
+        public async Task<CandidateDTO> AddCandidateTestAsync(string firstName, string lastName, string testName)
+        {
+
+            var test = (from t in _context.Test
+                        where t.Title == testName
+                        select t).FirstAsync();
+
+            Entities.Candidate candidate = new Entities.Candidate()
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                TestId = test.Id
+            };
+
+
+            var candidateDTO = new CandidateDTO() { FirstName = firstName, LastName = lastName, TestName = testName };
+
+            _context.Candidate.Add(candidate);
+             await _context.SaveChangesAsync();
+
+
+
+            return candidateDTO;
         }
 
         //// Get old result

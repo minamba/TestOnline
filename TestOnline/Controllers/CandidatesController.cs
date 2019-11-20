@@ -53,7 +53,13 @@ namespace TestOnline.Controllers
         }
 
 
+        [Route("AddCandidateTest")]
+        [HttpPost]
+        public async Task<CandidateDTO> AddCandidateTestAsync(string firstName, string lastName, string testName)
+        {
+            CandidateDTO candidate = await _service.AddCandidateTestAsync(firstName, lastName, testName);
 
-
+            return candidate;
+        }
     }
 }

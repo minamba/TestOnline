@@ -2,7 +2,7 @@
 
 namespace Business.Models
 {
-    public class CandidateModel
+    public class Candidate
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -10,7 +10,7 @@ namespace Business.Models
         public IEnumerable<ResultModel> Result { get; set; }
 
 
-        public CandidateModel(string firstName, string lastName, TestModel test, IEnumerable<ResultModel> result)
+        public Candidate(string firstName, string lastName, TestModel test, IEnumerable<ResultModel> result)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -18,7 +18,7 @@ namespace Business.Models
             Result = result;
         }
 
-        public CandidateModel()
+        public Candidate()
         {}
     }
 }

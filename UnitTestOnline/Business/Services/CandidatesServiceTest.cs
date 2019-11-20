@@ -7,11 +7,9 @@ using Business.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NSubstitute;
-using Business;
 using Business.Services;
 using TestOnline.Controllers;
-using Dal.Entities;
-using Dal.Repositories;
+using Business;
 
 namespace UnitTestOnline.Business.Services
 {
@@ -34,11 +32,11 @@ namespace UnitTestOnline.Business.Services
             Assert.AreEqual(serialize1, serialize2);
         }
 
-        private List<CandidateModel> GetCandidateModelFixture() //QUAND LE CODE EST TROP LONG ON FAIT CE GENRE DE METHODE (règle de clean code)
+        private List<global::Business.Models.Candidate> GetCandidateModelFixture() //QUAND LE CODE EST TROP LONG ON FAIT CE GENRE DE METHODE (règle de clean code)
         {
-            return new List<CandidateModel>()
+            return new List<global::Business.Models.Candidate>()
             {
-                new CandidateModel
+                new global::Business.Models.Candidate
                 {
                     LastName = "camara",
                     FirstName = "minamba",
@@ -47,7 +45,7 @@ namespace UnitTestOnline.Business.Services
                         Title = "C#"
                     }
                 },
-                new CandidateModel
+                new global::Business.Models.Candidate
                 {
                     LastName = "uzumaki",
                     FirstName = "naruto",
@@ -56,7 +54,7 @@ namespace UnitTestOnline.Business.Services
                         Title = "python"
                     }
                 },
-                new CandidateModel
+                new global::Business.Models.Candidate
                 {
                     LastName = "uchiha",
                     FirstName = "sasuke",
@@ -99,6 +97,27 @@ namespace UnitTestOnline.Business.Services
             string serialize1 = JsonConvert.SerializeObject(ecartType);
             string serialize2 = JsonConvert.SerializeObject(result);
 
+
+            Assert.AreEqual(serialize1, serialize2);
+        }
+
+        [TestMethod]
+        public async Task Shoud_Add_CandidateTest_In_CandidateService()
+        {
+            var candidate = new CandidateDTO()
+            {
+                FirstName = "Minamba",
+                LastName = "Camara",
+                TestName ="c#"
+            };
+
+
+            var mockRepository = Substitute.For<ICandidatesRepository>();
+            mockRepository.AddCandidateTestAsync(candidate.FirstName, candidate.LastName, candidate.TestName).Returns(candidate);
+            var candidateService = new CandidatesService(mockRepository);
+            var result = await candidateService.AddCandidateTestAsync(candidate.FirstName, candidate.LastName, candidate.TestName);
+            string serialize1 = JsonConvert.SerializeObject(candidate);
+            string serialize2 = JsonConvert.SerializeObject(result);
 
             Assert.AreEqual(serialize1, serialize2);
         }
@@ -162,34 +181,34 @@ namespace UnitTestOnline.Business.Services
     }
 
     #region Fake clas
-    public class CandidatesEqual
-    {
+    //public class CandidatesEqual
+    //{
 
-        public CandidateModel _CandidateModel { get; set; }
+    //    public Candidate _CandidateModel { get; set; }
 
-        public CandidatesEqual(CandidateModel cm)
-        {
-            _CandidateModel = cm;
+    //    public CandidatesEqual(global::Business.Models.Candidate cm)
+    //    {
+    //        _CandidateModel = cm;
 
-        }
+    //    }
 
-        public override bool Equals(Object obj)
-        {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
-            {
-                return false;
-            }
-            else
-            {
-                var c = (CandidatesEqual)obj;
-                return _CandidateModel == c._CandidateModel;
-            }
-        }
-        public override int GetHashCode()
-        {
-            return -1271776452 + EqualityComparer<CandidateModel>.Default.GetHashCode(_CandidateModel);
-        }
-    }
+    //    public override bool Equals(Object obj)
+    //    {
+    //        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+    //        {
+    //            return false;
+    //        }
+    //        else
+    //        {
+    //            var c = (CandidatesEqual)obj;
+    //            return _CandidateModel == c._CandidateModel;
+    //        }
+    //    }
+    //    public override int GetHashCode()
+    //    {
+    //        return -1271776452 + EqualityComparer<global::Business.Models.Candidate>.Default.GetHashCode((global::Business.Models.Candidate)_CandidateModel);
+    //    }
+    //}
     public class MyInteger
     {
         public MyInteger(int a)
