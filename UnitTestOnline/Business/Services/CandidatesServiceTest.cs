@@ -101,6 +101,7 @@ namespace UnitTestOnline.Business.Services
             Assert.AreEqual(serialize1, serialize2);
         }
 
+
         [TestMethod]
         public async Task Shoud_Add_CandidateTest_In_CandidateService()
         {
@@ -110,7 +111,6 @@ namespace UnitTestOnline.Business.Services
                 LastName = "Camara",
                 TestName ="c#"
             };
-
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
             mockRepository.AddCandidateTestAsync(candidate.FirstName, candidate.LastName, candidate.TestName).Returns(candidate);

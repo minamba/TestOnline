@@ -84,6 +84,7 @@ namespace Dal.Repositories
 
         public async Task<CandidateDTO> AddCandidateTestAsync(string firstName, string lastName, string testName)
         {
+            var candidateDTO = new CandidateDTO() { FirstName = firstName, LastName = lastName, TestName = testName };
 
             var test = (from t in _context.Test
                         where t.Title == testName
@@ -91,18 +92,14 @@ namespace Dal.Repositories
 
             Entities.Candidate candidate = new Entities.Candidate()
             {
-                FirstName = firstName,
-                LastName = lastName,
+                FirstName = candidateDTO.FirstName,
+                LastName = candidateDTO.LastName,
                 TestId = test.Id
             };
 
 
-            var candidateDTO = new CandidateDTO() { FirstName = firstName, LastName = lastName, TestName = testName };
-
             _context.Candidate.Add(candidate);
              await _context.SaveChangesAsync();
-
-
 
             return candidateDTO;
         }
