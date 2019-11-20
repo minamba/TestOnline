@@ -2,12 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Business;
 using Business.Models;
 using Business.Repositories;
 using coreEntityFramework;
 using Microsoft.EntityFrameworkCore;
-using Business;
-using Dal.Entities;
 
 namespace Dal.Repositories
 {
@@ -55,7 +54,6 @@ namespace Dal.Repositories
             return testModel;
         }
 
-
         public async Task<List<AnswerModel>> GetAnswersAsync()
         {
             var answerEntity = await _context.Answer.ToListAsync();
@@ -69,16 +67,6 @@ namespace Dal.Repositories
             }).ToList();
 
             return answerModel;
-        }
-
-        public Task<double> GetAverageAsync()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<double> GetEcartTypeAsync()
-        {
-            throw new System.NotImplementedException();
         }
 
 
@@ -103,6 +91,16 @@ namespace Dal.Repositories
 
             return candidateDTO;
         }
+
+        //public Task<double> GetAverageAsync()
+        //{
+        //    throw new System.NotImplementedException();
+        //}
+
+        //public Task<double> GetEcartTypeAsync()
+        //{
+        //    throw new System.NotImplementedException();
+        //}
 
         //// Get old result
         //public async Task<List<ResultModel>> GetResultsAsync()
