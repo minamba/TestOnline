@@ -82,7 +82,7 @@ namespace UnitTestOnline.Business.Services
             string serialize2 = JsonConvert.SerializeObject(result);
 
 
-            Assert.AreEqual(average, result);
+            Assert.AreEqual(serialize1, serialize2);
 
         }
 
@@ -100,7 +100,7 @@ namespace UnitTestOnline.Business.Services
             string serialize2 = JsonConvert.SerializeObject(result);
 
 
-            Assert.AreEqual(ecartType, result);
+            Assert.AreEqual(serialize1, serialize2);
         }
 
 

@@ -56,7 +56,7 @@ namespace UnitTestOnline.TestOnline.Controllers
             string serialize1 = JsonConvert.SerializeObject(average);
             string serialize2 = JsonConvert.SerializeObject(result);
 
-            Assert.AreEqual(average, result);
+            Assert.AreEqual(serialize1, serialize2);
         }
 
 
@@ -73,8 +73,31 @@ namespace UnitTestOnline.TestOnline.Controllers
             string serialize2 = JsonConvert.SerializeObject(result);
 
 
-            Assert.AreEqual(ecartType, result);
+            Assert.AreEqual(serialize1, serialize2);
         }
+
+
+        //[TestMethod]
+        //public async Task Shoud_Add_CandidateTest_In_CandidateService()
+        //{
+        //    var candidate = new Candidate()
+        //    {
+        //        FirstName = "Minamba",
+        //        LastName = "Camara",
+        //        TestId = 1
+        //    };
+
+
+        //    var candidateService = Substitute.For<ICandidatesService>();
+        //    candidateService.AddCandidateAsync().Returns(candidate);
+        //    var candidateController = new CandidatesController(candidateService);
+        //    var result = await candidateController.AddCandidateAsync();
+        //    string serialize1 = JsonConvert.SerializeObject(candidate);
+        //    string serialize2 = JsonConvert.SerializeObject(result);
+
+
+        //    Assert.AreEqual(serialize1, serialize2);
+        //}
 
 
     }
