@@ -24,15 +24,17 @@ namespace TestOnline.Controllers
             _service = service;
         }
 
+        [Route("GetCandidates")]
         [HttpGet]
         public async Task<List<CandidateDTO>> GetCandidatesAsync()
-        {      
+        {
             var candidates = await _service.GetCandidatesAsync();
 
             //return Ok(candidates);
             return candidates;
         }
 
+        [Route("GetAverage")]
         [HttpGet]
         public async Task<double> GetAverageAsync()
         {
@@ -41,7 +43,7 @@ namespace TestOnline.Controllers
             return average;
         }
 
-
+        [Route("GetEcartType")]
         [HttpGet]
         public async Task<double> GetEcartTypeAsync()
         {
