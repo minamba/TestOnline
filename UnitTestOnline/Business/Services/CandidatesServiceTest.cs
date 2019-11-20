@@ -72,7 +72,7 @@ namespace UnitTestOnline.Business.Services
         [TestMethod]
         public async Task Shoud_Get_Average_In_CandidateService()
         {
-            int average = 14;
+            double average = 14;
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
             mockRepository.GetAverageAsync().Returns(average);

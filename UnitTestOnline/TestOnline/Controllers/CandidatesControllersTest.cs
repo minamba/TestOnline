@@ -47,7 +47,7 @@ namespace UnitTestOnline.TestOnline.Controllers
         [TestMethod]
         public async Task Shoud_Get_Average_In_Controller()
         {
-            int average = 14;
+            double average = 14;
 
             var candidateService = Substitute.For<ICandidatesService>();
             candidateService.GetAverageAsync().Returns(average);
@@ -56,9 +56,7 @@ namespace UnitTestOnline.TestOnline.Controllers
             string serialize1 = JsonConvert.SerializeObject(average);
             string serialize2 = JsonConvert.SerializeObject(result);
 
-
             Assert.AreEqual(average, result);
-
         }
 
 
