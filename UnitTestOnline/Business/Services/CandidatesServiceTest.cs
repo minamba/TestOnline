@@ -70,12 +70,17 @@ namespace UnitTestOnline.Business.Services
         [DataRow(14)] // Un autre moyen de passer des paramètres pour les tests
         public async Task Shoud_Get_Average_In_CandidateService(double average)
         {
-            var testModel = new TestModel()
-            {
-                QuestionId = 1,
-                QuestionsNumber =10,
-                Title = "c#"
-            };
+            var testModel = new List<TestModel>();
+            testModel.Add(new TestModel("c#a", 1, 10));
+            testModel.Add(new TestModel("c#b", 2, 10));
+            testModel.Add(new TestModel("c#c", 3, 10));
+            testModel.Add(new TestModel("c#d", 4, 10));
+
+            var answers = new List<AnswerModel>();
+            answers.Add(new AnswerModel(1, 1, "1", "a", 1));
+            answers.Add(new AnswerModel(2, 2, "2", "2", 0));
+            answers.Add(new AnswerModel(3, 3, "3", "c", 1));
+            answers.Add(new AnswerModel(4, 4, "4", "d", 0));
 
             var results = new List<ResultModel>();
             results.Add(new ResultModel(1, true));
@@ -84,13 +89,15 @@ namespace UnitTestOnline.Business.Services
 
             var candidates = new List<Candidate>()
             {
-                new Candidate("minamba","camara",testModel,results),
-                new Candidate("naruto","uzumaki",testModel,results),
-                new Candidate("sasuke","uchiha",testModel,results),
+                new Candidate("minamba","camara",testModel[0],results),
+                new Candidate("naruto","uzumaki",testModel[1],results),
+                new Candidate("sasuke","uchiha",testModel[2],results),
             };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
             mockRepository.GetCandidatesAsync().Returns(candidates);
+            mockRepository.GetTestsAsync().Returns(testModel);
+            mockRepository.GetAnswersAsync().Returns(answers);
             //mockRepository.GetAverageAsync().Returns(ecartType);
             // Il faut mocker les méthodes :
             // _repository.GetCandidatesAsync();
