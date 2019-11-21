@@ -25,6 +25,7 @@ namespace TestOnline.Controllers
             _service = service;
         }
 
+
         [Route("Candidates")]
         [HttpGet]
         public async Task<List<CandidateDTO>> GetCandidatesAsync()
@@ -35,6 +36,7 @@ namespace TestOnline.Controllers
             return candidates;
         }
 
+
         [Route("Average")]
         [HttpGet]
         public async Task<double> GetAverageAsync()
@@ -43,6 +45,7 @@ namespace TestOnline.Controllers
 
             return average;
         }
+
 
         [Route("EcartType")]
         [HttpGet]
@@ -54,7 +57,7 @@ namespace TestOnline.Controllers
         }
 
 
-        [Route("CandidateTest")]
+        [Route("Candidates")]
         [HttpPost]
         public async Task<CandidateDTO> AddCandidateTestAsync(string firstName, string lastName, string testName)
         {
@@ -62,6 +65,7 @@ namespace TestOnline.Controllers
 
             return candidate;
         }
+
 
         [Route("Cars")]
         [HttpPost]

@@ -21,7 +21,7 @@ namespace Dal.Repositories
             _context = dbcontext;
         }
 
-        public async Task<List<Business.Models.Candidate>> GetCandidatesAsync()
+        public async Task<List<Candidate>> GetCandidatesAsync()
         {
             var candidateEntity = await _context.Candidate.Include(c => c.Test).Include(c => c.Result).ToListAsync();
             var candidateModel = candidateEntity.Select(c => new Business.Models.Candidate
@@ -46,6 +46,7 @@ namespace Dal.Repositories
             var testEntity = await _context.Test.Include(c => c.TestQuestion).ToListAsync();
             var testModel = testEntity.Select(t => new TestModel
             {
+                Id = t.Id,
                 Title = t.Title,
                 QuestionId = t.Id,
                 QuestionsNumber = t.TestQuestion.Count

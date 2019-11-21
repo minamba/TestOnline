@@ -70,24 +70,67 @@ namespace UnitTestOnline.Business.Services
         [DataRow(14)] // Un autre moyen de passer des paramètres pour les tests
         public async Task Shoud_Get_Average_In_CandidateService(double average)
         {
+            var testModel = new TestModel()
+            {
+                QuestionId = 1,
+                QuestionsNumber =10,
+                Title = "c#"
+            };
+
+            var results = new List<ResultModel>();
+            results.Add(new ResultModel(1, true));
+            results.Add(new ResultModel(2, false));
+            results.Add(new ResultModel(3, true));
+
+            var candidates = new List<Candidate>()
+            {
+                new Candidate("minamba","camara",testModel,results),
+                new Candidate("naruto","uzumaki",testModel,results),
+                new Candidate("sasuke","uchiha",testModel,results),
+            };
+
             var mockRepository = Substitute.For<ICandidatesRepository>();
-            //mockRepository.GetAverageAsync().Returns(average);
+            mockRepository.GetCandidatesAsync().Returns(candidates);
+            //mockRepository.GetAverageAsync().Returns(ecartType);
             // Il faut mocker les méthodes :
             // _repository.GetCandidatesAsync();
             // _repository.GetTestsAsync();
             // _repository.GetAnswersAsync();
             var candidateService = new CandidatesService(mockRepository);
-            var result = await candidateService.GetAverageAsync();
+      
+            var result2 = await candidateService.GetAverageAsync();
 
-            Assert.AreEqual(average, result); // Pas beson de serialization car ce ne sont pas des types références (c'est à dire des objets) mais des types valeurs donc direct Assert.AreEqual
+
+            Assert.AreEqual(average, result2); // Pas beson de serialization car ce ne sont pas des types références (c'est à dire des objets) mais des types valeurs donc direct Assert.AreEqual
         }
 
         [TestMethod]
-        public async Task Shoud_Get_EcartType_In_CandidateService()
+        [DataRow(14)]
+        [DataRow(2.6)]
+        public async Task Shoud_Get_EcartType_In_CandidateService(double average, double ecartType)
         {
-            double ecartType = 2.6; 
+            var testModel = new TestModel()
+            {
+                QuestionId = 1,
+                QuestionsNumber = 10,
+                Title = "c#"
+            };
+
+            var results = new List<ResultModel>();
+            results.Add(new ResultModel(1, true));
+            results.Add(new ResultModel(2, false));
+            results.Add(new ResultModel(3, true));
+
+            var candidates = new List<Candidate>()
+            {
+                new Candidate("minamba","camara",testModel,results),
+                new Candidate("naruto","uzumaki",testModel,results),
+                new Candidate("sasuke","uchiha",testModel,results),
+            };
+
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
+            mockRepository.GetCandidatesAsync().Returns(candidates);
             //mockRepository.GetEcartTypeAsync().Returns(ecartType);
             var candidateService = new CandidatesService(mockRepository);
             var result = await candidateService.GetEcartTypeAsync();

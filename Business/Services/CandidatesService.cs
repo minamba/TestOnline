@@ -31,7 +31,7 @@ namespace Business.Repositories
             {
                 foreach (var t in tests)
                 {
-                    if (c.Test.Title == t.Title)
+                    if (c.Test.Id == t.Id)
                     {
                         foreach (var cr in c.Result)
                         {

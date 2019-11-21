@@ -4,6 +4,7 @@ namespace Business.Models
 {
     public class TestModel
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public int QuestionId { get; set; }
         public int QuestionsNumber { get; set; }
