@@ -78,7 +78,7 @@ namespace UnitTestOnline.Business.Services
 
             var answers = new List<AnswerModel>();
             answers.Add(new AnswerModel(1, 1, "1", "a", 1));
-            answers.Add(new AnswerModel(2, 2, "2", "2", 0));
+            answers.Add(new AnswerModel(2, 2, "2", "b", 0));
             answers.Add(new AnswerModel(3, 3, "3", "c", 1));
             answers.Add(new AnswerModel(4, 4, "4", "d", 0));
 
