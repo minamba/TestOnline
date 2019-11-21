@@ -105,10 +105,10 @@ namespace UnitTestOnline.Business.Services
             // _repository.GetAnswersAsync();
             var candidateService = new CandidatesService(mockRepository);
       
-            var result2 = await candidateService.GetAverageAsync();
+            var result = await candidateService.GetAverageAsync();
 
 
-            Assert.AreEqual(average, result2); // Pas beson de serialization car ce ne sont pas des types références (c'est à dire des objets) mais des types valeurs donc direct Assert.AreEqual
+            Assert.AreEqual(average, result); // Pas beson de serialization car ce ne sont pas des types références (c'est à dire des objets) mais des types valeurs donc direct Assert.AreEqual
         }
 
         [TestMethod]
