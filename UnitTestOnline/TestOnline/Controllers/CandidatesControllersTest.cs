@@ -83,11 +83,9 @@ namespace UnitTestOnline.TestOnline.Controllers
             candidateService.GetEcartTypeAsync().Returns(ecartType);
             var candidateController = new CandidatesController(candidateService);
             var result = await candidateController.GetEcartTypeAsync();
-            string serialize1 = JsonConvert.SerializeObject(ecartType);
-            string serialize2 = JsonConvert.SerializeObject(result);
+            var okResult = result as OkObjectResult;
 
-
-            Assert.AreEqual(serialize1, serialize2);
+            Assert.AreEqual(200, okResult.StatusCode);
         }
 
 
@@ -108,10 +106,9 @@ namespace UnitTestOnline.TestOnline.Controllers
             candidateService.AddCandidateTestAsync(candidate).Returns(candidate);
             var candidateController = new CandidatesController(candidateService);
             var result = await candidateController.AddCandidateTestAsync(candidate);
-            string serialize1 = JsonConvert.SerializeObject(candidate);
-            string serialize2 = JsonConvert.SerializeObject(result);
+            var okResult = result as CreatedAtActionResult;
 
-            Assert.AreEqual(serialize1, serialize2);
+            Assert.AreEqual(201,okResult.StatusCode);
         }
 
 
