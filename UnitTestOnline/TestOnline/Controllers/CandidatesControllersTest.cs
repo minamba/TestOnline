@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business;
+using Business.Models;
 using Business.Services;
-using Dal.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NSubstitute;
@@ -71,17 +71,20 @@ namespace UnitTestOnline.TestOnline.Controllers
         [TestMethod]
         public async Task Shoud_Add_CandidateTest_In_CandidateService()
         {
-            var candidate = new CandidateDTO()
+            var candidate = new Candidate()
             {
                 FirstName = "Minamba",
                 LastName = "Camara",
-                TestName = "c#"
+                Test = new TestModel()
+                 {
+                     Title ="c#"
+                 }
             };
 
             var candidateService = Substitute.For<ICandidatesService>();
-            candidateService.AddCandidateTestAsync(candidate.FirstName, candidate.LastName, candidate.TestName).Returns(candidate);
+            candidateService.AddCandidateTestAsync(candidate).Returns(candidate);
             var candidateController = new CandidatesController(candidateService);
-            var result = await candidateController.AddCandidateTestAsync(candidate.FirstName, candidate.LastName, candidate.TestName);
+            var result = await candidateController.AddCandidateTestAsync(candidate);
             string serialize1 = JsonConvert.SerializeObject(candidate);
             string serialize2 = JsonConvert.SerializeObject(result);
 

@@ -19,6 +19,6 @@ namespace Business.Models
         }
 
         public Candidate()
-        {}
+        { }
     }
 }

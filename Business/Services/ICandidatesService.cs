@@ -1,4 +1,5 @@
 ﻿
+using Business.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace Business.Services
         Task<List<CandidateDTO>> GetCandidatesAsync();
         Task<double> GetAverageAsync();
         Task<double> GetEcartTypeAsync();
-        Task<CandidateDTO> AddCandidateTestAsync(string firstName, string lastName, string testName);
+        Task<Candidate> AddCandidateTestAsync(Candidate candidate);
         //Task<List<CandidateDTO>> CalculCandidatesNotes();
     }
 }

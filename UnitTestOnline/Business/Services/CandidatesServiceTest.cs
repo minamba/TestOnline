@@ -67,7 +67,7 @@ namespace UnitTestOnline.Business.Services
         }
 
         [TestMethod]
-        [DataRow(14)] // Un autre moyen de passer des paramètres pour les tests
+        [DataRow(8)] // Un autre moyen de passer des paramètres pour les tests
         public async Task Shoud_Get_Average_In_CandidateService(double average)
         {
             var testModel = new List<TestModel>();
@@ -99,73 +99,79 @@ namespace UnitTestOnline.Business.Services
             mockRepository.GetCandidatesAsync().Returns(candidates);
             mockRepository.GetTestsAsync().Returns(testModel);
             mockRepository.GetAnswersAsync().Returns(answers);
-            //mockRepository.GetAverageAsync().Returns(ecartType);
-            // Il faut mocker les méthodes :
-            // _repository.GetCandidatesAsync();
-            // _repository.GetTestsAsync();
-            // _repository.GetAnswersAsync();
+
+
             var candidateService = new CandidatesService(mockRepository);
-      
-            var result = await candidateService.GetAverageAsync();
+            double result = await candidateService.GetAverageAsync();
 
 
             Assert.AreEqual(average, result); // Pas beson de serialization car ce ne sont pas des types références (c'est à dire des objets) mais des types valeurs donc direct Assert.AreEqual
         }
 
         [TestMethod]
-        [DataRow(14)]
-        [DataRow(2.6)]
-        public async Task Shoud_Get_EcartType_In_CandidateService(double average, double ecartType)
+        [DataRow(0)]
+        public async Task Shoud_Get_EcartType_In_CandidateService(double ecartType)
         {
-            var testModel = new TestModel()
-            {
-                QuestionId = 1,
-                QuestionsNumber = 10,
-                Title = "c#"
-            };
+            var testModel = new List<TestModel>();
+            testModel.Add(new TestModel("c#a", 1, 10));
+            testModel.Add(new TestModel("c#b", 2, 10));
+            testModel.Add(new TestModel("c#c", 3, 10));
+            testModel.Add(new TestModel("c#d", 4, 10));
+
+            var answers = new List<AnswerModel>();
+            answers.Add(new AnswerModel(1, 1, "1", "a", 1));
+            answers.Add(new AnswerModel(2, 2, "2", "b", 0));
+            answers.Add(new AnswerModel(3, 3, "3", "c", 1));
+            answers.Add(new AnswerModel(4, 4, "4", "d", 0));
 
             var results = new List<ResultModel>();
             results.Add(new ResultModel(1, true));
             results.Add(new ResultModel(2, false));
             results.Add(new ResultModel(3, true));
+            results.Add(new ResultModel(4, false));
 
             var candidates = new List<Candidate>()
             {
-                new Candidate("minamba","camara",testModel,results),
-                new Candidate("naruto","uzumaki",testModel,results),
-                new Candidate("sasuke","uchiha",testModel,results),
+                new Candidate("minamba","camara",testModel[0],results),
+                new Candidate("naruto","uzumaki",testModel[1],results),
+                new Candidate("sasuke","uchiha",testModel[2],results),
+                new Candidate("madara","uchiha",testModel[3],results),
+
             };
 
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
             mockRepository.GetCandidatesAsync().Returns(candidates);
-            //mockRepository.GetEcartTypeAsync().Returns(ecartType);
-            var candidateService = new CandidatesService(mockRepository);
-            var result = await candidateService.GetEcartTypeAsync();
-            string serialize1 = JsonConvert.SerializeObject(ecartType);
-            string serialize2 = JsonConvert.SerializeObject(result);
+            mockRepository.GetTestsAsync().Returns(testModel);
+            mockRepository.GetAnswersAsync().Returns(answers);
 
-            Assert.AreEqual(serialize1, serialize2);
+            var candidateService = new CandidatesService(mockRepository);
+            double result = await candidateService.GetEcartTypeAsync();
+
+            Assert.AreEqual(ecartType, result);
         }
+
+
 
         [TestMethod]
         public async Task Shoud_Add_CandidateTest_In_CandidateService()
         {
-            var candidate = new CandidateDTO()
+            var candidate = new Candidate()
             {
                 FirstName = "Minamba",
                 LastName = "Camara",
-                TestName ="c#"
+                Test = new TestModel()
+                {
+                    Title="c#"
+                }
             };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
-            mockRepository.AddCandidateTestAsync(candidate.FirstName, candidate.LastName, candidate.TestName).Returns(candidate);
+            mockRepository.AddCandidateTestAsync(candidate).Returns(candidate);
             var candidateService = new CandidatesService(mockRepository);
-            var result = await candidateService.AddCandidateTestAsync(candidate.FirstName, candidate.LastName, candidate.TestName);
-            string serialize1 = JsonConvert.SerializeObject(candidate);
-            string serialize2 = JsonConvert.SerializeObject(result);
+            var result = await candidateService.AddCandidateTestAsync(candidate);
 
-            Assert.AreEqual(serialize1, serialize2);
+            Assert.AreEqual(candidate, result);
         }
 
 

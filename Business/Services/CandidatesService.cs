@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Business.Services;
+using Business.Models;
 
 namespace Business.Repositories
 {
@@ -70,7 +71,24 @@ namespace Business.Repositories
 
             average = average / numberOfCandidates;
 
-            return average;
+            if(average != 0)
+            {
+
+                if (average < 0)
+                {
+                    throw new Exception("Un problème a été rencontré, la moyenne est inferieur à zero ");
+                }
+                else
+                {
+
+                    return average;
+                }             
+            }
+            else
+            {
+                throw new Exception("un problème à été rencontré, la moyenne est à zero");
+            }
+          
         }
 
         public async Task<double> GetEcartTypeAsync()
@@ -96,11 +114,9 @@ namespace Business.Repositories
             return ecartType;
         }
 
-        public async Task<CandidateDTO> AddCandidateTestAsync(string firstName, string lastName, string testName)
+        public async Task<Candidate> AddCandidateTestAsync(Candidate candidate)
         {
-            CandidateDTO candidate = await _repository.AddCandidateTestAsync(firstName, lastName, testName);
-
-            return candidate;
+            return await _repository.AddCandidateTestAsync(candidate); 
         }
     }
 }

@@ -5,7 +5,6 @@ using Business.Repositories;
 using Business.Services;
 using coreEntityFramework;
 using Dal;
-using Dal.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -59,11 +58,9 @@ namespace TestOnline.Controllers
 
         [Route("Candidates")]
         [HttpPost]
-        public async Task<CandidateDTO> AddCandidateTestAsync(string firstName, string lastName, string testName)
-        {
-            CandidateDTO candidate = await _service.AddCandidateTestAsync(firstName, lastName, testName);
-
-            return candidate;
+        public async Task<IActionResult> AddCandidateTestAsync([FromBody] Candidate candidate)
+        {            
+            return CreatedAtAction("AddCandidateTestAsync", candidate);
         }
 
 

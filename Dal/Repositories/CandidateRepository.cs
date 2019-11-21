@@ -71,26 +71,20 @@ namespace Dal.Repositories
         }
 
 
-        public async Task<CandidateDTO> AddCandidateTestAsync(string firstName, string lastName, string testName)
+        public async Task<Candidate> AddCandidateTestAsync(Candidate cdt)
         {
-            var candidateDTO = new CandidateDTO() { FirstName = firstName, LastName = lastName, TestName = testName };
-
-            var test = (from t in _context.Test
-                        where t.Title == testName
-                        select t).FirstAsync();
-
             Entities.Candidate candidate = new Entities.Candidate()
             {
-                FirstName = candidateDTO.FirstName,
-                LastName = candidateDTO.LastName,
-                TestId = test.Id
+                FirstName = cdt.FirstName,
+                LastName = cdt.LastName,
+                TestId = cdt.Test.Id
             };
 
 
             _context.Candidate.Add(candidate);
              await _context.SaveChangesAsync();
 
-            return candidateDTO;
+            return cdt;
         }
 
         //public Task<double> GetAverageAsync()
