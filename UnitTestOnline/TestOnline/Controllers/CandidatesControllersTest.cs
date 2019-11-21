@@ -2,6 +2,7 @@
 using Business;
 using Business.Models;
 using Business.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NSubstitute;
@@ -48,6 +49,28 @@ namespace UnitTestOnline.TestOnline.Controllers
             string serialize2 = JsonConvert.SerializeObject(result);
 
             Assert.AreEqual(serialize1, serialize2);
+        }
+
+        [TestMethod]
+        [DataRow(8)] // Un autre moyen de passer des paramètres pour les tests
+        public async Task Shoud_Get_Average_In_CandidateService(double average)
+        {
+            var candidates = new List<CandidateDTO>()
+            {
+                new CandidateDTO("minamba","camara","c#",10),
+                new CandidateDTO("naruto","uzumaki","php",8),
+                new CandidateDTO("sasuke","uchiha","python",15),
+            };
+
+            var mockService = Substitute.For<ICandidatesService>();
+            mockService.GetCandidatesAsync().Returns(candidates);
+
+            var candidateController = new CandidatesController(mockService);
+            var result = await candidateController.GetAverageAsync();
+            var okResult = result as OkObjectResult;
+
+
+            Assert.AreEqual(200, okResult.StatusCode);
         }
 
 

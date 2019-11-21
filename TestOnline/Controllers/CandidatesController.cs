@@ -38,21 +38,21 @@ namespace TestOnline.Controllers
 
         [Route("Average")]
         [HttpGet]
-        public async Task<double> GetAverageAsync()
+        public async Task<IActionResult> GetAverageAsync()
         {
             double average = await _service.GetAverageAsync();
 
-            return average;
+            return Ok(average);
         }
 
 
         [Route("EcartType")]
         [HttpGet]
-        public async Task<double> GetEcartTypeAsync()
+        public async Task<IActionResult> GetEcartTypeAsync()
         {
             double ecartType = await _service.GetEcartTypeAsync();
 
-            return ecartType;
+            return Ok(ecartType);
         }
 
 
