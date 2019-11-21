@@ -21,5 +21,10 @@ namespace Business.Models
             Label = label;
             IsGood = isGood;
         }
+
+        public AnswerModel()
+        {
+
+        }
     }
 }
