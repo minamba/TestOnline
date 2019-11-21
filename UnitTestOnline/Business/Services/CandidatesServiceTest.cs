@@ -86,6 +86,7 @@ namespace UnitTestOnline.Business.Services
             results.Add(new ResultModel(1, true));
             results.Add(new ResultModel(2, false));
             results.Add(new ResultModel(3, true));
+            results.Add(new ResultModel(4, false));
 
             var candidates = new List<Candidate>()
             {
