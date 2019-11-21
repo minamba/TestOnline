@@ -9,6 +9,7 @@ using Dal.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -60,6 +61,27 @@ namespace TestOnline.Controllers
             CandidateDTO candidate = await _service.AddCandidateTestAsync(firstName, lastName, testName);
 
             return candidate;
+        }
+
+        [Route("Cars")]
+        [HttpPost]
+        public async Task<IActionResult> CreateCarAsync([FromBody] Car car)
+        {
+            // Call service;
+            Car result = new Car();
+
+            return CreatedAtAction("AddCarAsync", result);
+        }
+
+        public class Car
+        {
+            [Required]
+            public string Mark { get; set; }
+
+            public string Model { get; set; }
+
+            [Required]
+            public int Year { get; set; }
         }
     }
 }

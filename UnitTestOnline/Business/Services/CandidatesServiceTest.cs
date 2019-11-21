@@ -66,24 +66,21 @@ namespace UnitTestOnline.Business.Services
             };
         }
 
-
         [TestMethod]
-        public async Task Shoud_Get_Average_In_CandidateService()
+        [DataRow(14)] // Un autre moyen de passer des paramètres pour les tests
+        public async Task Shoud_Get_Average_In_CandidateService(double average)
         {
-            double average = 14;
-
             var mockRepository = Substitute.For<ICandidatesRepository>();
-            mockRepository.GetAverageAsync().Returns(average);
+            //mockRepository.GetAverageAsync().Returns(average);
+            // Il faut mocker les méthodes :
+            // _repository.GetCandidatesAsync();
+            // _repository.GetTestsAsync();
+            // _repository.GetAnswersAsync();
             var candidateService = new CandidatesService(mockRepository);
             var result = await candidateService.GetAverageAsync();
-            string serialize1 = JsonConvert.SerializeObject(average);
-            string serialize2 = JsonConvert.SerializeObject(result);
 
-
-            Assert.AreEqual(serialize1, serialize2);
-
+            Assert.AreEqual(average, result); // Pas beson de serialization car ce ne sont pas des types références (c'est à dire des objets) mais des types valeurs donc direct Assert.AreEqual
         }
-
 
         [TestMethod]
         public async Task Shoud_Get_EcartType_In_CandidateService()
@@ -91,16 +88,14 @@ namespace UnitTestOnline.Business.Services
             double ecartType = 2.6; 
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
-            mockRepository.GetEcartTypeAsync().Returns(ecartType);
+            //mockRepository.GetEcartTypeAsync().Returns(ecartType);
             var candidateService = new CandidatesService(mockRepository);
             var result = await candidateService.GetEcartTypeAsync();
             string serialize1 = JsonConvert.SerializeObject(ecartType);
             string serialize2 = JsonConvert.SerializeObject(result);
 
-
             Assert.AreEqual(serialize1, serialize2);
         }
-
 
         [TestMethod]
         public async Task Shoud_Add_CandidateTest_In_CandidateService()

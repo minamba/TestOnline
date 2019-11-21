@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Business.Services;
-using Business.Models;
-using System;
 
 namespace Business.Repositories
 {
@@ -20,7 +18,6 @@ namespace Business.Repositories
         {
             return await CalculCandidatesNotes();
         }
-
 
         public async Task<List<CandidateDTO>> CalculCandidatesNotes()
         {
@@ -75,7 +72,6 @@ namespace Business.Repositories
 
             return average;
         }
-
 
         public async Task<double> GetEcartTypeAsync()
         {
