@@ -21,6 +21,8 @@ namespace UnitTestOnline.Business.Services
         public async Task Shoud_Get_Candidates_In_CandidateService()
         {
             var candidates = GetCandidateModelFixture();
+            var candidatesDTO = new List<CandidateDTO>();
+            candidatesDTO = candidates.Select(d => new CandidateDTO(d.FirstName, d.LastName, d.Test.Title, 3)).ToList();
 
             var testModel = new List<TestModel>();
             testModel.Add(new TestModel("c#", 1, 10));
@@ -29,7 +31,7 @@ namespace UnitTestOnline.Business.Services
 
             var answers = new List<AnswerModel>();
             answers.Add(new AnswerModel(1, 1, "1", "a", 1));
-            answers.Add(new AnswerModel(2, 2, "2", "b", 0));
+            answers.Add(new AnswerModel(2, 2, "2", "b", 1));
             answers.Add(new AnswerModel(3, 3, "3", "c", 1));
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
@@ -40,14 +42,20 @@ namespace UnitTestOnline.Business.Services
             var candidateService = new CandidatesService(mockRepository);
             var result = await candidateService.GetCandidatesAsync();
 
-            string serialize1 = JsonConvert.SerializeObject(candidates);
+            string serialize1 = JsonConvert.SerializeObject(candidatesDTO);
             string serialize2 = JsonConvert.SerializeObject(result);
 
             Assert.AreEqual(serialize1, serialize2);
         }
 
+
         private List<global::Business.Models.Candidate> GetCandidateModelFixture() //QUAND LE CODE EST TROP LONG ON FAIT CE GENRE DE METHODE (règle de clean code)
         {
+            var resultModel = new List<ResultModel>()
+            {
+                new ResultModel(1,true)
+            };
+
             return new List<global::Business.Models.Candidate>()
             {
                 new global::Business.Models.Candidate
@@ -57,7 +65,9 @@ namespace UnitTestOnline.Business.Services
                     Test = new TestModel
                     {
                         Title = "C#"
-                    }
+                    },
+                    Result = resultModel
+
                 },
                 new global::Business.Models.Candidate
                 {
@@ -66,7 +76,8 @@ namespace UnitTestOnline.Business.Services
                     Test = new TestModel
                     {
                         Title = "python"
-                    }
+                    },
+                    Result = resultModel
                 },
                 new global::Business.Models.Candidate
                 {
@@ -75,7 +86,8 @@ namespace UnitTestOnline.Business.Services
                     Test = new TestModel
                     {
                         Title = ".net core"
-                    }
+                    },
+                    Result = resultModel
                 }
             };
         }
@@ -121,6 +133,50 @@ namespace UnitTestOnline.Business.Services
 
             Assert.AreEqual(average, result); // Pas beson de serialization car ce ne sont pas des types références (c'est à dire des objets) mais des types valeurs donc direct Assert.AreEqual
         }
+
+
+        //TEST AVERAGE A 0
+        [TestMethod] 
+        public async Task Shoud_Get_Average_In_CandidateService_with_0_value()
+        {
+            var testModel = new List<TestModel>();
+            testModel.Add(new TestModel("c#a", 1, 10));
+            testModel.Add(new TestModel("c#b", 2, 10));
+            testModel.Add(new TestModel("c#c", 3, 10));
+            testModel.Add(new TestModel("c#d", 4, 10));
+
+            var answers = new List<AnswerModel>();
+            answers.Add(new AnswerModel(1, 1, "1", "a", 0));
+            answers.Add(new AnswerModel(2, 2, "2", "b", 0));
+            answers.Add(new AnswerModel(3, 3, "3", "c", 0));
+            answers.Add(new AnswerModel(4, 4, "4", "d", 0));
+
+            var results = new List<ResultModel>();
+            results.Add(new ResultModel(1, false));
+            results.Add(new ResultModel(2, false));
+            results.Add(new ResultModel(3, false));
+            results.Add(new ResultModel(4, false));
+
+            var candidates = new List<Candidate>()
+            {
+                new Candidate("minamba","camara",testModel[0],results),
+                new Candidate("naruto","uzumaki",testModel[1],results),
+                new Candidate("sasuke","uchiha",testModel[2],results),
+            };
+
+            var mockRepository = Substitute.For<ICandidatesRepository>();
+            mockRepository.GetCandidatesAsync().Returns(candidates);
+            mockRepository.GetTestsAsync().Returns(testModel);
+            mockRepository.GetAnswersAsync().Returns(answers);
+
+
+            var candidateService = new CandidatesService(mockRepository);
+            double result = await candidateService.GetAverageAsync();
+
+
+            await Assert.ThrowsExceptionAsync<NullReferenceException>(() => candidateService.GetAverageAsync());
+        }
+
 
         [TestMethod]
         [DataRow(0)]

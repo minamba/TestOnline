@@ -76,7 +76,7 @@ namespace Business.Repositories
 
                 if (average < 0)
                 {
-                    throw new Exception("Un problème a été rencontré, la moyenne est inferieur à zero ");
+                    throw new Exception("Un problème a été rencontré, la moyenne est inferieur à zero");
                 }
                 else
                 {
