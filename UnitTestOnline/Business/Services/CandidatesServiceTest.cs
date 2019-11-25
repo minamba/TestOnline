@@ -174,7 +174,7 @@ namespace UnitTestOnline.Business.Services
             double result = await candidateService.GetAverageAsync();
 
 
-            await Assert.ThrowsExceptionAsync<NullReferenceException>(() => candidateService.GetAverageAsync());
+            await Assert.ThrowsExceptionAsync<Exception>(() => candidateService.GetAverageAsync());
         }
 
 
