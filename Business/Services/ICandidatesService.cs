@@ -11,6 +11,5 @@ namespace Business.Services
         Task<double> GetAverageAsync();
         Task<double> GetEcartTypeAsync();
         Task<Candidate> AddCandidateTestAsync(Candidate candidate);
-        //Task<List<CandidateDTO>> CalculCandidatesNotes();
     }
 }

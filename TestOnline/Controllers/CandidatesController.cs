@@ -6,6 +6,8 @@ using Business.Services;
 using coreEntityFramework;
 using Dal;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,6 +19,7 @@ namespace TestOnline.Controllers
     [Route("api/[controller]")]
     public class CandidatesController : Controller
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private ICandidatesService _service;
 
         public CandidatesController(ICandidatesService service)
@@ -27,12 +30,11 @@ namespace TestOnline.Controllers
 
         [Route("Candidates")]
         [HttpGet]
-        public async Task<List<CandidateDTO>> GetCandidatesAsync()
+        public async Task<IActionResult> GetCandidatesAsync()
         {
             var candidates = await _service.GetCandidatesAsync();
-
-            //return Ok(candidates);
-            return candidates;
+            logger.Info("test de log" + Environment.NewLine + DateTime.Now);
+            return Ok(candidates);
         }
 
 

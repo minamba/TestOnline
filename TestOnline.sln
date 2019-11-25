@@ -9,7 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestOnline", "UnitTestOnline\UnitTestOnline.csproj", "{40DF47B2-6F07-4DC4-AEA7-03527484DFB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{503969B3-5E49-427E-85E0-8A17CAAFD4C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dal", "Dal\Dal.csproj", "{503969B3-5E49-427E-85E0-8A17CAAFD4C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8F9584C6-4EB0-40FD-976C-306F787CFDCB}"
+	ProjectSection(SolutionItems) = preProject
+		nlog.config = nlog.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{A926C41D-C523-4713-96AB-A1BD78977B4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +43,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A926C41D-C523-4713-96AB-A1BD78977B4F} = {8F9584C6-4EB0-40FD-976C-306F787CFDCB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2D1B3A0-9DDF-4092-9E5D-72C2A5BA84BD}
