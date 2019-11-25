@@ -171,7 +171,6 @@ namespace UnitTestOnline.Business.Services
 
 
             var candidateService = new CandidatesService(mockRepository);
-            double result = await candidateService.GetAverageAsync();
 
 
             await Assert.ThrowsExceptionAsync<Exception>(() => candidateService.GetAverageAsync());
