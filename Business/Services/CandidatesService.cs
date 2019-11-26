@@ -81,7 +81,7 @@ namespace Business.Repositories
 
                 if (average < 0)
                 {
-                  _logger.Information("Un problème a été rencontré, la moyenne est inferieur à zero");
+                  _logger.Error("Un problème a été rencontré, la moyenne est inferieur à zero");
                   throw new Exception("Un problème a été rencontré, la moyenne est inferieur à zero");
                 }
                 else
@@ -92,7 +92,7 @@ namespace Business.Repositories
             }
             else
             {
-                _logger.Information("un problème à été rencontré, la moyenne est à zero");
+                _logger.Error("un problème à été rencontré, la moyenne est à zero");
                 throw new Exception("un problème à été rencontré, la moyenne est à zero");
             }
           
