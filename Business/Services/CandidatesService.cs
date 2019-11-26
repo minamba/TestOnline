@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Business.Services;
 using Business.Models;
+using NLog;
+using TestOnline.Logs;
 
 namespace Business.Repositories
 {
     public class CandidatesService : ICandidatesService
     {
         private ICandidatesRepository _repository;
+        private static ILog _logger;
 
-        public CandidatesService(ICandidatesRepository repository)
+
+        public CandidatesService(ICandidatesRepository repository, ILog logger)
         {
             _repository = repository;
+            _logger = logger;
         }
 
         public async Task<List<CandidateDTO>> GetCandidatesAsync()
@@ -76,7 +81,8 @@ namespace Business.Repositories
 
                 if (average < 0)
                 {
-                    throw new Exception("Un problème a été rencontré, la moyenne est inferieur à zero");
+                  _logger.Information("Un problème a été rencontré, la moyenne est inferieur à zero");
+                  throw new Exception("Un problème a été rencontré, la moyenne est inferieur à zero");
                 }
                 else
                 {
@@ -86,6 +92,7 @@ namespace Business.Repositories
             }
             else
             {
+                _logger.Information("un problème à été rencontré, la moyenne est à zero");
                 throw new Exception("un problème à été rencontré, la moyenne est à zero");
             }
           

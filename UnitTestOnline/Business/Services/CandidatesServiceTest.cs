@@ -11,6 +11,7 @@ using Business.Services;
 using TestOnline.Controllers;
 using Business;
 using Microsoft.AspNetCore.Mvc;
+using TestOnline.Logs;
 
 namespace UnitTestOnline.Business.Services
 {
@@ -35,11 +36,12 @@ namespace UnitTestOnline.Business.Services
             answers.Add(new AnswerModel(3, 3, "3", "c", 1));
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
+            var logger = Substitute.For<ILog>();
             mockRepository.GetCandidatesAsync().Returns(candidates);
             mockRepository.GetTestsAsync().Returns(testModel);
             mockRepository.GetAnswersAsync().Returns(answers);
 
-            var candidateService = new CandidatesService(mockRepository);
+            var candidateService = new CandidatesService(mockRepository, logger);
             var result = await candidateService.GetCandidatesAsync();
 
             string serialize1 = JsonConvert.SerializeObject(candidatesDTO);
@@ -122,12 +124,13 @@ namespace UnitTestOnline.Business.Services
             };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
+            var logger = Substitute.For<ILog>();
             mockRepository.GetCandidatesAsync().Returns(candidates);
             mockRepository.GetTestsAsync().Returns(testModel);
             mockRepository.GetAnswersAsync().Returns(answers);
 
 
-            var candidateService = new CandidatesService(mockRepository);
+            var candidateService = new CandidatesService(mockRepository,logger);
             double result = await candidateService.GetAverageAsync();
 
 
@@ -165,12 +168,13 @@ namespace UnitTestOnline.Business.Services
             };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
+            var logger = Substitute.For<ILog>();
             mockRepository.GetCandidatesAsync().Returns(candidates);
             mockRepository.GetTestsAsync().Returns(testModel);
             mockRepository.GetAnswersAsync().Returns(answers);
 
 
-            var candidateService = new CandidatesService(mockRepository);
+            var candidateService = new CandidatesService(mockRepository, logger);
 
 
             await Assert.ThrowsExceptionAsync<Exception>(() => candidateService.GetAverageAsync());
@@ -210,11 +214,12 @@ namespace UnitTestOnline.Business.Services
 
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
+            var logger = Substitute.For<ILog>();
             mockRepository.GetCandidatesAsync().Returns(candidates);
             mockRepository.GetTestsAsync().Returns(testModel);
             mockRepository.GetAnswersAsync().Returns(answers);
 
-            var candidateService = new CandidatesService(mockRepository);
+            var candidateService = new CandidatesService(mockRepository,logger);
             double result = await candidateService.GetEcartTypeAsync();
 
             Assert.AreEqual(ecartType, result);
@@ -236,8 +241,9 @@ namespace UnitTestOnline.Business.Services
             };
 
             var mockRepository = Substitute.For<ICandidatesRepository>();
+            var logger = Substitute.For<ILog>();
             mockRepository.AddCandidateTestAsync(candidate).Returns(candidate);
-            var candidateService = new CandidatesService(mockRepository);
+            var candidateService = new CandidatesService(mockRepository,logger);
             var result = await candidateService.AddCandidateTestAsync(candidate);
 
             Assert.AreEqual(candidate, result);

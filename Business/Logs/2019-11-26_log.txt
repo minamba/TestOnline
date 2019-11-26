@@ -1,0 +1,13 @@
+2019-11-26 09:42:22.9114 INFO Information is logged
+2019-11-26 09:42:22.9627 WARN Warning is logged
+2019-11-26 09:42:22.9627 DEBUG Debug log is logged
+2019-11-26 09:42:22.9627 ERROR Error is logged
+2019-11-26 10:20:44.3960 INFO Information is logged
+2019-11-26 10:20:44.4945 WARN Warning is logged
+2019-11-26 10:20:44.4945 DEBUG Debug log is logged
+2019-11-26 10:20:44.4945 ERROR Error is logged
+2019-11-26 10:24:24.0861 INFO Information is logged
+2019-11-26 10:24:24.1513 WARN Warning is logged
+2019-11-26 10:24:24.1513 DEBUG Debug log is logged
+2019-11-26 10:24:24.1513 ERROR Error is logged
+2019-11-26 10:24:27.3681 INFO {"Result":[{"FirstName":"Lionel","LastName":"Messi","TestName":"Test C# easy","Note":0},{"FirstName":"Cristiano","LastName":"Ronaldo","TestName":"Test C# medium","Note":0},{"FirstName":"Fabio","LastName":"Cannavaro","TestName":"Test C# hard","Note":0},{"FirstName":"Andriy","LastName":"Chevtchenko","TestName":"Test C# very hard","Note":0},{"FirstName":"Pavel","LastName":"Nedved","TestName":"Test C# medium","Note":0},{"FirstName":"Michael","LastName":"Owen","TestName":"Test C# hard","Note":0}],"Id":264,"Exception":null,"Status":5,"IsCanceled":false,"IsCompleted":true,"IsCompletedSuccessfully":true,"CreationOptions":0,"AsyncState":null,"IsFaulted":false}

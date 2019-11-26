@@ -7,6 +7,7 @@ using coreEntityFramework;
 using Dal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -34,11 +35,13 @@ namespace TestOnline.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCandidatesAsync()
         {
-            _logger.Information("Information is logged");
-            _logger.Warning("Warning is logged");
-            _logger.Debug("Debug log is logged");
-            _logger.Error("Error is logged");
+            //Logger methodes
+            //_logger.Information("Information is logged");
+            //_logger.Warning("Warning is logged");
+            //_logger.Debug("Debug log is logged");
+            //_logger.Error("Error is logged");
 
+            _logger.Information(JsonConvert.SerializeObject(_service.GetCandidatesAsync()));
             var candidates = await _service.GetCandidatesAsync();
             return Ok(candidates);
         }
@@ -67,7 +70,8 @@ namespace TestOnline.Controllers
         [Route("Candidates")]
         [HttpPost]
         public async Task<IActionResult> AddCandidateTestAsync([FromBody] Candidate candidate)
-        {            
+        {
+            _logger.Information(JsonConvert.SerializeObject(candidate));
             return CreatedAtAction("AddCandidateTestAsync", candidate);
         }
 
