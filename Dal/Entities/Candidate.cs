@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dal.Entities
 {
@@ -11,10 +12,11 @@ namespace Dal.Entities
         }
 
         public int Id { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
         public int? TestId { get; set; }
-
         public virtual Test Test { get; set; }
         public virtual ICollection<Result> Result { get; set; }
 

@@ -9,6 +9,8 @@ using NSubstitute;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TestOnline.Controllers;
+using TestOnline.Logs;
+
 namespace UnitTestOnline.TestOnline.Controllers
 {
     [TestClass]
@@ -24,8 +26,9 @@ namespace UnitTestOnline.TestOnline.Controllers
                 new CandidateDTO ("uchiha", "sasuke",".net core",18)
             };
             var candidateService = Substitute.For<ICandidatesService>();
+            var logger = Substitute.For<ILog>();
             candidateService.GetCandidatesAsync().Returns(candidates);
-            var CandidateController = new CandidatesController(candidateService);
+            var CandidateController = new CandidatesController(candidateService, logger);
 
             var result = await CandidateController.GetCandidatesAsync();
             var okResult = result as OkObjectResult;
@@ -50,7 +53,8 @@ namespace UnitTestOnline.TestOnline.Controllers
 
             var candidateService = Substitute.For<ICandidatesService>();
             candidateService.GetCandidatesAsync().Returns(candidates);
-            var candidateController = new CandidatesController(candidateService);
+            var logger = Substitute.For<ILog>();
+            var candidateController = new CandidatesController(candidateService, logger);
             var result = await candidateController.GetAverageAsync();
             var okResult = result as OkObjectResult;
             Assert.AreEqual(200, okResult.StatusCode);
@@ -69,8 +73,8 @@ namespace UnitTestOnline.TestOnline.Controllers
 
             var mockService = Substitute.For<ICandidatesService>();
             mockService.GetCandidatesAsync().Returns(candidates);
-
-            var candidateController = new CandidatesController(mockService);
+            var logger = Substitute.For<ILog>();
+            var candidateController = new CandidatesController(mockService, logger);
             var result = await candidateController.GetAverageAsync();
             var okResult = result as OkObjectResult;
 
@@ -84,9 +88,10 @@ namespace UnitTestOnline.TestOnline.Controllers
         {
             double ecartType = 2.6;
 
-            var candidateService = Substitute.For<ICandidatesService>();
-            candidateService.GetEcartTypeAsync().Returns(ecartType);
-            var candidateController = new CandidatesController(candidateService);
+            var mockService = Substitute.For<ICandidatesService>();
+            mockService.GetEcartTypeAsync().Returns(ecartType);
+            var logger = Substitute.For<ILog>();
+            var candidateController = new CandidatesController(mockService, logger);
             var result = await candidateController.GetEcartTypeAsync();
             var okResult = result as OkObjectResult;
 
@@ -107,9 +112,10 @@ namespace UnitTestOnline.TestOnline.Controllers
                  }
             };
 
-            var candidateService = Substitute.For<ICandidatesService>();
-            candidateService.AddCandidateTestAsync(candidate).Returns(candidate);
-            var candidateController = new CandidatesController(candidateService);
+            var mockService = Substitute.For<ICandidatesService>();
+            mockService.AddCandidateTestAsync(candidate).Returns(candidate);
+            var logger = Substitute.For<ILog>();
+            var candidateController = new CandidatesController(mockService, logger);
             var result = await candidateController.AddCandidateTestAsync(candidate);
             var okResult = result as CreatedAtActionResult;
 

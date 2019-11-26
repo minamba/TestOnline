@@ -16,6 +16,9 @@ using coreEntityFramework;
 using Dal.Repositories;
 using AutoMapper;
 using Dal.Profile;
+using TestOnline.Logs;
+using System.IO;
+using NLog;
 
 namespace TestOnline
 {
@@ -23,6 +26,7 @@ namespace TestOnline
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(System.String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -40,6 +44,11 @@ namespace TestOnline
             {
                 options.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Test online API", Version = "v1" });
             });
+
+            services.AddSingleton<ILog, LogNLog>();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

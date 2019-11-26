@@ -13,18 +13,20 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using TestOnline.Logs;
 
 namespace TestOnline.Controllers
 {
     [Route("api/[controller]")]
     public class CandidatesController : Controller
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private ILog _logger;
         private ICandidatesService _service;
 
-        public CandidatesController(ICandidatesService service)
+        public CandidatesController(ICandidatesService service, ILog logger)
         {
             _service = service;
+            _logger = logger;
         }
 
 
@@ -32,8 +34,12 @@ namespace TestOnline.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCandidatesAsync()
         {
+            _logger.Information("Information is logged");
+            _logger.Warning("Warning is logged");
+            _logger.Debug("Debug log is logged");
+            _logger.Error("Error is logged");
+
             var candidates = await _service.GetCandidatesAsync();
-            logger.Info("test de log" + Environment.NewLine + DateTime.Now);
             return Ok(candidates);
         }
 
