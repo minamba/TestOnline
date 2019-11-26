@@ -12,7 +12,8 @@ namespace Business.Repositories
     {
         private ICandidatesRepository _repository;
         private static ILog _logger;
-
+        string error_average_under_0 = "Un problème a été rencontré, la moyenne est inferieur à zero";
+        string error_average_0 = "un problème à été rencontré, la moyenne est à zero";
 
         public CandidatesService(ICandidatesRepository repository, ILog logger)
         {
@@ -81,8 +82,8 @@ namespace Business.Repositories
 
                 if (average < 0)
                 {
-                  _logger.Error("Un problème a été rencontré, la moyenne est inferieur à zero");
-                  throw new Exception("Un problème a été rencontré, la moyenne est inferieur à zero");
+                  _logger.Error(error_average_under_0);
+                  throw new Exception(error_average_under_0);
                 }
                 else
                 {
@@ -92,8 +93,8 @@ namespace Business.Repositories
             }
             else
             {
-                _logger.Error("un problème à été rencontré, la moyenne est à zero");
-                throw new Exception("un problème à été rencontré, la moyenne est à zero");
+                _logger.Error(error_average_0);
+                throw new Exception(error_average_0);
             }
           
         }
