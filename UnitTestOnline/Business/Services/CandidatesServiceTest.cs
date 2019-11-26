@@ -129,7 +129,6 @@ namespace UnitTestOnline.Business.Services
             mockRepository.GetTestsAsync().Returns(testModel);
             mockRepository.GetAnswersAsync().Returns(answers);
 
-
             var candidateService = new CandidatesService(mockRepository,logger);
             double result = await candidateService.GetAverageAsync();
 
@@ -178,6 +177,49 @@ namespace UnitTestOnline.Business.Services
 
 
             await Assert.ThrowsExceptionAsync<Exception>(() => candidateService.GetAverageAsync());
+        }
+
+
+        //TEST AVERAGE A 0
+        [TestMethod]
+        public async Task Shoud_Get_Average_LOG_In_CandidateService_with_0_value()
+        {
+            var testModel = new List<TestModel>();
+            testModel.Add(new TestModel("c#a", 1, 10));
+            testModel.Add(new TestModel("c#b", 2, 10));
+            testModel.Add(new TestModel("c#c", 3, 10));
+            testModel.Add(new TestModel("c#d", 4, 10));
+
+            var answers = new List<AnswerModel>();
+            answers.Add(new AnswerModel(1, 1, "1", "a", 0));
+            answers.Add(new AnswerModel(2, 2, "2", "b", 0));
+            answers.Add(new AnswerModel(3, 3, "3", "c", 0));
+            answers.Add(new AnswerModel(4, 4, "4", "d", 0));
+
+            var results = new List<ResultModel>();
+            results.Add(new ResultModel(1, false));
+            results.Add(new ResultModel(2, false));
+            results.Add(new ResultModel(3, false));
+            results.Add(new ResultModel(4, false));
+
+            var candidates = new List<Candidate>()
+            {
+                new Candidate("minamba","camara",testModel[0],results),
+                new Candidate("naruto","uzumaki",testModel[1],results),
+                new Candidate("sasuke","uchiha",testModel[2],results),
+            };
+
+            var mockRepository = Substitute.For<ICandidatesRepository>();
+            var logger = Substitute.For<ILog>();
+            mockRepository.GetCandidatesAsync().Returns(candidates);
+            mockRepository.GetTestsAsync().Returns(testModel);
+            mockRepository.GetAnswersAsync().Returns(answers);
+
+
+            var candidateService = new CandidatesService(mockRepository, logger);
+
+
+            logger.Received(1).Error(candidateService.GetAverageAsync().ToString());
         }
 
 
